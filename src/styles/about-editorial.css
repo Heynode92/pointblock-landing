@@ -1,0 +1,236 @@
+/* About: editorial game overview. All selectors scoped to .about-page.
+   Uses the existing self-hosted battlefield SVG; footage is loaded only after click. */
+.about-page{overflow:clip;color:var(--text,#f6faff);background:#071523}
+.about-page h1,.about-page h2,.about-page h3{font-style:italic}
+.about-page .about-eyebrow{display:flex;align-items:center;gap:11px;margin:0;color:#a2c7de;font-size:12px;font-weight:900;letter-spacing:.19em;line-height:1.5}
+.about-page .about-eyebrow>span{flex:none;width:9px;height:17px;transform:skewX(-21deg);background:#ff922c}
+.about-page h2{margin:15px 0 0;font:italic 900 clamp(42px,4.35vw,72px)/1.03 Impact,"Arial Black",sans-serif;letter-spacing:.006em}
+.about-page h2 em,.about-page h1 em,.about-page h3 em{font-style:inherit;color:#ff9a38}
+.about-page .about-section{padding:clamp(75px,7.5vw,116px) 0}
+.about-page .about-section-header{display:flex;align-items:flex-end;justify-content:space-between;gap:50px;margin-bottom:42px}
+.about-page .about-section-header>div{max-width:790px}
+.about-page .about-section-header>p{max-width:415px;margin:0 0 4px;color:#a9c4d6;font-size:18px;line-height:1.5}
+.about-page .about-inline-link{display:inline-flex;align-items:center;gap:14px;color:#ffb265;font-size:13px;font-weight:900;letter-spacing:.11em;padding-bottom:7px;border-bottom:1px solid #ea985188;transition:color .18s}
+.about-page .about-inline-link:hover{color:#fff}
+/* Hero: two-column cinematic editorial—not a wall of cards. */
+.about-page .about-hero{
+ position:relative;
+ padding:clamp(67px,6vw,100px) 0 0;
+ background:
+  linear-gradient(90deg,#071522fa 0%,#081b2be8 43%,#0a2034b0 77%,#081a2a91),
+  url("/media/pointblock-battlefield.svg") center 36%/cover no-repeat,
+  #09192b;
+}
+.about-page .about-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(125deg,transparent 0 18%,#6099b00c 18% 27%,transparent 27% 75%,#ff90310c 75% 82%,transparent 82%)}
+.about-page .about-hero-layout{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:clamp(30px,4.5vw,70px);align-items:center;padding-bottom:clamp(65px,7vw,112px)}
+.about-page .about-hero-intro{min-width:0}
+.about-page .about-hero h1{font:italic 900 clamp(47px,4.7vw,80px)/.99 Impact,"Arial Black",sans-serif;letter-spacing:.006em;margin:23px 0 24px}
+.about-page .about-hero h1 em{display:inline-block}
+.about-page .about-hero-lead{max-width:690px;font-size:clamp(20px,1.7vw,25px);font-weight:800;line-height:1.38;margin:0 0 15px;color:#f5f9fc}
+.about-page .about-hero-body{max-width:620px;color:#a7c6d8;font-size:clamp(16px,1.14vw,18px);line-height:1.55;margin:0}
+.about-page .about-hero-actions{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px;margin-top:27px}
+.about-page .about-hero-platform{display:flex;align-items:center;gap:10px;margin-top:23px;color:#a8c6d8;font-size:11px;letter-spacing:.08em;font-weight:900}
+.about-page .about-hero-platform svg{color:#ffac55;font-size:18px;flex:none}
+.about-page .about-footage{position:relative;min-width:0;align-self:center;background:#091d31;border:1px solid #668ba0;border-top:3px solid #ff9a31;padding:11px}
+.about-page .about-footage-top,.about-page .about-footage-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 9px 13px;color:#b4cfdf;font-size:11px;font-weight:900;letter-spacing:.11em}
+.about-page .about-footage-top span:first-child{display:flex;align-items:center;gap:9px}
+.about-page .about-footage-top svg{color:#ff9f43}
+.about-page .about-footage-bottom{padding:12px 8px 2px;font-size:10px}
+.about-page .about-footage-bottom i{display:inline-block;margin:0 6px;width:5px;height:5px;transform:rotate(45deg);background:#ff962e;vertical-align:middle}
+.about-page .about-footage-screen{position:relative;aspect-ratio:16/9;background:#102e48;overflow:hidden}
+.about-page .about-footage-illustration{position:absolute;inset:0;display:grid;place-items:center;background:
+ linear-gradient(0deg,#071625db,#0d33503b 65%,#0718277b),
+ radial-gradient(circle at 65% 36%,#366a8680,transparent 60%),
+ url("/media/pointblock-battlefield.svg") center 36%/cover no-repeat}
+.about-page .about-footage-illustration>svg{font-size:clamp(80px,10vw,165px);color:#dbeff02e}
+.about-page .about-footage-illustration>span{position:absolute;border:1px solid #b0c7d967;background:#071d31a8;color:#ffbd73;display:grid;place-items:center;font:900 23px Rajdhani,sans-serif;width:52px;height:52px}
+.about-page .about-illustration-a{left:21%;top:23%}
+.about-page .about-illustration-b{right:14%;bottom:22%}
+.about-page .about-footage-trigger{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:#fff;background:linear-gradient(0deg,#06152499,transparent 62%);font-size:14px;letter-spacing:.13em;font-weight:900}
+.about-page .about-footage-trigger>span{width:68px;height:68px;display:grid;place-items:center;font-size:27px;border:2px solid #ffc17e;border-radius:50%;color:#ffbc71;background:#10283cdc;transition:background .18s,color .18s}
+.about-page .about-footage-trigger:hover>span{background:#ffa54a;color:#061522}
+.about-page .about-footage-trigger>small{font-size:11px;color:#a9c6d8}
+.about-page .about-footage-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#061321}
+.about-page .about-fact-strip{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #456f8a;border-bottom:1px solid #456f8a;background:#0c263bdf}
+.about-page .about-fact-strip>div{display:flex;align-items:center;justify-content:center;gap:16px;padding:25px 12px;border-right:1px solid #42667e}
+.about-page .about-fact-strip>div:last-child{border-right:0}
+.about-page .about-fact-strip strong{font:italic 900 clamp(34px,3.4vw,53px)/1 Impact,sans-serif;white-space:nowrap}
+.about-page .about-fact-strip strong span{color:#ff962f;font-size:.7em}
+.about-page .about-fact-strip small{color:#b1ccda;font-size:11px;font-weight:900;letter-spacing:.09em}
+/* Story / intention */
+.about-page .about-purpose{background:#081a2a}
+.about-page .about-purpose-layout{display:grid;grid-template-columns:minmax(0,.76fr) minmax(0,1.24fr);gap:clamp(40px,8vw,135px)}
+.about-page .about-sticky-heading{align-self:start}
+.about-page .about-section-rule{display:block;width:110px;height:3px;margin-top:31px;background:linear-gradient(90deg,#ff9733,transparent)}
+.about-page .about-story{max-width:740px}
+.about-page .about-story-lead{font-size:clamp(21px,2.1vw,31px)!important;line-height:1.28!important;font-weight:900!important;color:#f4faff!important;margin-top:0!important}
+.about-page .about-story>p{font-size:18px;line-height:1.6;color:#aac4d6;margin:0 0 19px}
+.about-page .about-story strong{color:#f5faff}
+.about-page .about-story-quote{display:flex;align-items:center;gap:18px;border-left:3px solid #ff922c;background:#112d44;padding:20px 24px;margin-top:28px}
+.about-page .about-story-quote svg{font-size:27px;color:#ff9d3c;flex:none}
+.about-page .about-story-quote span{font-size:16px;font-weight:900;letter-spacing:.1em}
+/* Journey: restrained timeline, four steps, not floating cards. */
+.about-page .about-loop{background:linear-gradient(145deg,#0c253a,#091725)}
+.about-page .about-journey{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #49708a;border-bottom:1px solid #49708a;gap:0}
+.about-page .about-journey-step{position:relative;padding:29px clamp(15px,2.15vw,32px) 29px 0;min-width:0}
+.about-page .about-journey-step+article{border-left:1px solid #385a73;padding-left:clamp(15px,2.15vw,32px)}
+.about-page .about-journey-number{font:italic 900 45px/1 Impact,sans-serif;color:#ff9c3c;margin-bottom:19px}
+.about-page .about-journey-content small{color:#91b7d0;font-size:11px;letter-spacing:.1em;font-weight:900}
+.about-page .about-journey-content h3{font:italic 900 clamp(21px,1.7vw,28px)/1.15 Impact,sans-serif;margin:9px 0 12px}
+.about-page .about-journey-content p{font-size:16px;line-height:1.45;color:#a6c0d2;margin:0}
+.about-page .about-note{display:flex;align-items:center;gap:10px;color:#8aaabf;font-size:13px;margin:25px 0 0}
+.about-page .about-note svg{flex:none;color:#ff9c45}
+/* Modes are two broad editorial rows, not dozens of cards. */
+.about-page .about-modes{background:#071523}
+.about-page .about-mode-list{border-top:1px solid #436783}
+.about-page .about-mode-row{display:grid;grid-template-columns:150px minmax(0,1fr) 205px;align-items:center;gap:36px;border-bottom:1px solid #436783;padding:31px 0}
+.about-page .about-mode-symbol{height:128px;display:grid;place-items:center;position:relative;color:#8abfd6;background:linear-gradient(145deg,#123853,#0c2033);border-left:3px solid #ff9435}
+.about-page .about-mode-symbol>span{position:absolute;top:10px;left:12px;color:#ffaf68;font-size:11px;font-weight:900}
+.about-page .about-mode-symbol svg{font-size:54px}
+.about-page .about-mode-bomb .about-mode-symbol{border-left-color:#66c3ed}
+.about-page .about-mode-description>small{font-size:11px;color:#ffb26d;letter-spacing:.13em;font-weight:900}
+.about-page .about-mode-description h3{font:italic 900 clamp(29px,3vw,46px)/1.05 Impact,sans-serif;margin:6px 0 10px}
+.about-page .about-mode-description p{color:#a7c3d5;font-size:17px;line-height:1.48;max-width:720px;margin:0}
+.about-page .about-mode-spec{display:flex;flex-direction:column;align-items:flex-start;gap:5px;border-left:1px solid #446985;padding:9px 0 9px 28px}
+.about-page .about-mode-spec strong{font:italic 900 42px Impact,sans-serif;color:#f7f9fc}
+.about-page .about-mode-spec span{font-size:11px;color:#ffb369;letter-spacing:.1em;font-weight:900}
+/* Three pillars & one unified inventory strip. */
+.about-page .about-design{background:#0a1d2d}
+.about-page .about-principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(25px,3vw,55px);padding:25px 0 51px;border-top:1px solid #456985}
+.about-page .about-principles article>span{color:#ffad58;font-size:11px;font-weight:900;letter-spacing:.12em}
+.about-page .about-principles h3{font:italic 900 clamp(24px,2vw,33px)/1.12 Impact,sans-serif;margin:14px 0}
+.about-page .about-principles p{font-size:17px;color:#a2bed0;line-height:1.52;margin:0}
+.about-page .about-armory{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:0;background:#0c2a42;border:1px solid #416986;border-top:3px solid #ff9130}
+.about-page .about-armory-intro{padding:clamp(24px,3vw,42px);border-right:1px solid #3a5e7a}
+.about-page .about-armory-intro>span{color:#ffaf5f;letter-spacing:.13em;font-size:11px;font-weight:900}
+.about-page .about-armory-intro h3{font:italic 900 clamp(29px,2.8vw,45px)/1.05 Impact,sans-serif;margin:19px 0 15px}
+.about-page .about-armory-intro p{max-width:360px;color:#a5c1d3;font-size:16px;line-height:1.45;margin:0}
+.about-page .about-armory-rows{display:grid;grid-template-rows:repeat(4,minmax(0,1fr))}
+.about-page .about-armory-rows>div{display:grid;align-items:center;grid-template-columns:35px 145px minmax(0,1fr);gap:16px;padding:12px 25px;border-bottom:1px solid #41647c}
+.about-page .about-armory-rows>div:last-child{border:0}
+.about-page .about-armory-rows b{color:#ffb56d;font-size:13px}
+.about-page .about-armory-rows strong{font:italic 900 20px/1.2 Impact,sans-serif}
+.about-page .about-armory-rows span{color:#abc7d9;font-size:14px;line-height:1.3}
+/* Maps: ledger rows against concise explanation. */
+.about-page .about-world{background:#071523}
+.about-page .about-world-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,95px)}
+.about-page .about-world-layout>div:first-child p:not(.about-eyebrow){max-width:470px;font-size:18px;line-height:1.52;color:#a9c3d6;margin:22px 0 29px}
+.about-page .about-map-ledger{border-top:1px solid #52718a}
+.about-page .about-map-ledger>div{display:flex;align-items:center;gap:18px;padding:17px 7px;border-bottom:1px solid #45647b}
+.about-page .about-map-ledger>div>span{font:italic 900 24px Impact,sans-serif;color:#ff9831;flex:none;width:37px}
+.about-page .about-map-ledger>div>div{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.about-page .about-map-ledger strong{font:italic 900 23px Impact,sans-serif}
+.about-page .about-map-ledger small{font-size:13px;color:#97b9ce}
+.about-page .about-map-ledger b{font-size:10px;color:#95bad0;letter-spacing:.08em;white-space:nowrap}
+/* Chain and vPBT: explicit verified status and no fake onchain promises. */
+.about-page .about-ecosystem{background:linear-gradient(140deg,#103044,#091925)}
+.about-page .about-ecosystem-layout{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);border:1px solid #48788a}
+.about-page .about-ecosystem-primary{padding:clamp(28px,4vw,56px);background:linear-gradient(145deg,#0e3b45,#0a2b39);border-right:1px solid #3c6879}
+.about-page .about-ecosystem-primary>svg{font-size:38px;color:#7be8b7}
+.about-page .about-network-label{font-size:11px;color:#7dcdb4;font-weight:900;letter-spacing:.15em;margin:21px 0 7px}
+.about-page .about-ecosystem-primary h3{font:italic 900 clamp(36px,3.4vw,51px)/1.05 Impact,sans-serif;margin:0 0 20px}
+.about-page .about-ecosystem-primary>p:not(.about-network-label){max-width:565px;color:#bee0d8;font-size:17px;line-height:1.5;margin:0}
+.about-page .about-network-details{display:flex;flex-wrap:wrap;gap:26px;margin-top:32px;border-top:1px solid #4c8885;padding-top:22px}
+.about-page .about-network-details span{color:#8fd6c1;font-weight:900;font-size:11px;letter-spacing:.1em}
+.about-page .about-network-details strong{display:block;margin-top:5px;color:#fff;font-size:23px}
+.about-page .about-ecosystem-secondary{padding:clamp(28px,4vw,56px);background:#0a263c}
+.about-page .about-ecosystem-secondary h3{font:italic 900 27px Impact,sans-serif;margin:0 0 12px}
+.about-page .about-ecosystem-secondary p{color:#a9c5d6;font-size:17px;line-height:1.48;margin:0}
+.about-page .about-network-divider{height:1px;background:#4a7088;margin:25px 0}
+.about-page .about-ecosystem-secondary .about-inline-link{margin-top:25px}
+/* Honest status and final CTA. */
+.about-page .about-status{background:#081827}
+.about-page .about-status-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;border-top:1px solid #4c7088;border-bottom:1px solid #4c7088;padding:26px 0}
+.about-page .about-status-rows>div{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:15px;align-items:start}
+.about-page .about-status-rows svg{font-size:25px;color:#72e0ae;grid-row:span 2}
+.about-page .about-status-rows>div+div svg{color:#ffac65}
+.about-page .about-status-rows span{font-size:13px;font-weight:900;letter-spacing:.1em;color:#f5f9fd}
+.about-page .about-status-rows p{color:#a3c0d2;font-size:16px;line-height:1.45;margin:10px 0 0}
+.about-page .desktop-notice{margin-top:22px}
+.about-page .about-ending{padding:clamp(70px,6vw,95px) 0;background:linear-gradient(110deg,#15394e,#081c2d);border-top:2px solid #ff912d}
+.about-page .about-ending-layout{display:flex;align-items:center;justify-content:space-between;gap:35px}
+.about-page .about-ending h2{margin:13px 0}
+.about-page .about-ending p:not(.about-eyebrow){color:#afd0de;font-size:17px;margin:12px 0 0}
+.about-page .about-ending-actions{display:flex;align-items:flex-start;flex-wrap:wrap;gap:12px}
+.about-page .about-ending-actions .btn{min-height:53px}
+/* Tablet: preserve reading order and fit in-view columns. */
+@media(max-width:1100px){
+ .about-page .about-hero-layout{gap:32px}
+ .about-page .about-hero h1{font-size:clamp(44px,5.1vw,66px)}
+ .about-page .about-journey{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .about-page .about-journey-step:nth-child(3){border-left:0;border-top:1px solid #385a73;padding-left:0}
+ .about-page .about-journey-step:nth-child(4){border-top:1px solid #385a73}
+ .about-page .about-armory-rows>div{grid-template-columns:26px 125px minmax(0,1fr);padding-inline:17px;gap:9px}
+ .about-page .about-mode-row{grid-template-columns:120px minmax(0,1fr) 175px;gap:23px}
+}
+@media(max-width:980px){
+ .about-page .about-hero-layout{grid-template-columns:minmax(0,1fr);max-width:790px}
+ .about-page .about-hero h1{font-size:clamp(52px,8.1vw,83px)}
+ .about-page .about-purpose-layout,.about-page .about-world-layout{grid-template-columns:minmax(0,1fr);gap:25px}
+ .about-page .about-purpose-layout>.about-sticky-heading{position:static}
+ .about-page .about-section-header{align-items:flex-start;flex-direction:column;gap:17px}
+ .about-page .about-section-header>p{max-width:700px}
+ .about-page .about-principles{gap:22px}
+ .about-page .about-ecosystem-primary,.about-page .about-ecosystem-secondary{padding:30px}
+ .about-page .about-armory{grid-template-columns:minmax(0,1fr)}
+ .about-page .about-armory-intro{border-right:0;border-bottom:1px solid #41647c}
+ .about-page .about-armory-intro p{max-width:640px}
+ .about-page .about-armory-rows>div{grid-template-columns:32px 150px minmax(0,1fr)}
+}
+@media(max-width:700px){
+ .about-page .about-hero{padding-top:43px}
+ .about-page .about-hero-layout{padding-bottom:54px}
+ .about-page .about-hero h1{font-size:clamp(43px,10vw,67px)}
+ .about-page .about-hero-lead{font-size:20px}
+ .about-page .about-hero-body{font-size:16px}
+ .about-page .about-hero-actions{flex-direction:column}
+ .about-page .about-hero-actions>.btn,.about-page .about-hero-actions>.play-cta-group{width:100%}
+ .about-page .about-hero-actions .play-cta-group>.btn{width:100%}
+ .about-page .about-footage-top,.about-page .about-footage-bottom{font-size:9px}
+ .about-page .about-fact-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .about-page .about-fact-strip>div{border-bottom:1px solid #42667e;padding:15px 10px;justify-content:flex-start}
+ .about-page .about-fact-strip>div:nth-child(2){border-right:0}
+ .about-page .about-fact-strip>div:nth-child(n+3){border-bottom:0}
+ .about-page .about-fact-strip small{font-size:10px}
+ .about-page .about-story>p{font-size:16px}
+ .about-page .about-section-header>p{font-size:16px}
+ .about-page .about-journey{grid-template-columns:minmax(0,1fr)}
+ .about-page .about-journey-step,.about-page .about-journey-step+article{border:0;border-bottom:1px solid #395872;padding:20px 0}
+ .about-page .about-journey-step:last-child{border-bottom:0}
+ .about-page .about-journey-number{font-size:37px;margin-bottom:8px}
+ .about-page .about-mode-row{grid-template-columns:65px minmax(0,1fr);gap:12px;padding:22px 0}
+ .about-page .about-mode-symbol{height:80px;align-self:start}
+ .about-page .about-mode-symbol svg{font-size:30px}
+ .about-page .about-mode-description h3{font-size:29px}
+ .about-page .about-mode-description p{font-size:15px}
+ .about-page .about-mode-spec{grid-column:2;border-left:0;padding:3px 0 0;flex-direction:row;align-items:center;gap:12px}
+ .about-page .about-mode-spec strong{font-size:25px}
+ .about-page .about-principles{grid-template-columns:minmax(0,1fr);gap:20px}
+ .about-page .about-principles article{padding-bottom:20px;border-bottom:1px solid #3c607c}
+ .about-page .about-armory-rows>div{grid-template-columns:24px minmax(0,1fr);gap:5px 12px;padding:13px 17px}
+ .about-page .about-armory-rows span{grid-column:2}
+ .about-page .about-map-ledger>div{gap:10px}
+ .about-page .about-map-ledger strong{font-size:20px}
+ .about-page .about-map-ledger b{font-size:9px;max-width:85px;white-space:normal;text-align:right}
+ .about-page .about-ecosystem-layout{grid-template-columns:minmax(0,1fr)}
+ .about-page .about-ecosystem-primary{border-right:0;border-bottom:1px solid #3c6879}
+ .about-page .about-status-rows{grid-template-columns:minmax(0,1fr);gap:25px}
+ .about-page .about-ending-layout{flex-direction:column;align-items:flex-start}
+ .about-page .about-ending-actions{flex-direction:column;width:100%}
+ .about-page .about-ending-actions>.btn,.about-page .about-ending-actions>.play-cta-group{width:100%}
+ .about-page .about-ending-actions .play-cta-group>.btn{width:100%}
+}
+@media(max-width:410px){
+ .about-page .about-hero h1{font-size:clamp(37px,10.4vw,45px)}
+ .about-page .about-fact-strip>div{gap:8px}
+ .about-page .about-fact-strip strong{font-size:34px}
+ .about-page .about-fact-strip small{font-size:9px}
+ .about-page .about-footage-trigger>strong{font-size:12px}
+ .about-page .about-footage-trigger>small{font-size:9px}
+ .about-page .about-footage-trigger>span{width:52px;height:52px;font-size:21px}
+ .about-page .about-map-ledger b{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .about-page .about-footage-trigger>span,.about-page .about-inline-link{transition:none}
+}
