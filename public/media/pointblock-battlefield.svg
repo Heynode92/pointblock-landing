@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" aria-hidden="true">
+<defs>
+ <linearGradient id="sky" x1="230" y1="0" x2="1330" y2="870" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#091a2d"/><stop offset=".34" stop-color="#153653"/><stop offset=".67" stop-color="#142a41"/><stop offset="1" stop-color="#071422"/>
+ </linearGradient>
+ <radialGradient id="light" cx="0" cy="0" r="1" gradientTransform="translate(1070 235) rotate(154) scale(650 460)" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#41769a" stop-opacity=".6"/><stop offset="1" stop-color="#16334d" stop-opacity="0"/>
+ </radialGradient>
+ <linearGradient id="facade" x1="945" y1="103" x2="1438" y2="745" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#2f4b64"/><stop offset=".51" stop-color="#1b324c"/><stop offset="1" stop-color="#0b1c30"/>
+ </linearGradient>
+ <linearGradient id="tower" x1="975" y1="95" x2="1155" y2="490" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#35536d"/><stop offset="1" stop-color="#0b233b"/>
+ </linearGradient>
+ <linearGradient id="road" x1="750" y1="590" x2="1130" y2="900" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#152d40"/><stop offset="1" stop-color="#081624"/>
+ </linearGradient>
+ <linearGradient id="banner" x1="1295" y1="177" x2="1456" y2="419" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#8b4a38"/><stop offset="1" stop-color="#4b2935"/>
+ </linearGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<rect width="1600" height="900" fill="url(#light)"/>
+<path d="M0 140 430 0h170L150 825H0z" fill="#0b223b" opacity=".24"/>
+<path d="M560 0h120L122 895H0z" fill="#74afd0" opacity=".035"/>
+<path d="M835 25c115 48 201 55 306 32 108-22 228-18 354 53" stroke="#7aa6c4" stroke-opacity=".12" stroke-width="3"/>
+<path d="M703 129c76-16 165-24 217-9 38 12 115 23 190 6" stroke="#a2b9cb" stroke-opacity=".09" stroke-width="7"/>
+<path d="M535 305c153-44 250-45 412-21" stroke="#6888a6" stroke-opacity=".07" stroke-width="23"/>
+<!-- distant warehouse and antenna silhouettes -->
+<path d="M665 392 726 374v-58l95-22 92 39v301H640z" fill="#10283c"/>
+<path d="M732 312h105m-99-18h83" stroke="#5b7791" stroke-opacity=".35" stroke-width="6"/>
+<path d="m785 295 9-35 21-7 7 41" fill="#22384d"/>
+<path d="M818 254v-47m-11 29h22" stroke="#7793aa" stroke-width="3"/>
+<path d="M751 390v184m38-202v202m36-200v200" stroke="#63829b" stroke-opacity=".22" stroke-width="5"/>
+<path d="M867 314 923 301l108 29 17 329-206 17z" fill="#142b40"/>
+<path d="M923 300v286m55-269v303" stroke="#5b7791" stroke-opacity=".18" stroke-width="5"/>
+<path d="M840 355 921 339l128 23" stroke="#6d91a5" stroke-opacity=".3" stroke-width="6"/>
+<!-- main elevated industrial fortress -->
+<path d="M945 221 1203 164l288 55-251 65z" fill="#3b546b"/>
+<path d="m943 222 294 62v426l-301-68z" fill="url(#facade)"/>
+<path d="m1237 284 252-65v423l-252 68z" fill="#13283e"/>
+<path d="m949 231 286 61m8 0 239-62" stroke="#708da2" stroke-width="5" opacity=".6"/>
+<path d="M967 254v368m65-354v374m63-357v370m63-354v366" stroke="#8197a8" stroke-opacity=".21" stroke-width="6"/>
+<path d="M948 386 1239 440l248-60M949 551l287 52 251-57" stroke="#7794ac" stroke-opacity=".3" stroke-width="8"/>
+<!-- elevated roof edges -->
+<path d="m933 217 265-74 301 63-17 24-279-55-259 66z" fill="#20384e"/>
+<path d="M939 204 1201 137l289 62" stroke="#829db0" stroke-opacity=".35" stroke-width="8"/>
+<path d="M976 204v-27m40 17v-30m42 20v-30m42 19v-28m42 17v-29m45 15v-28m45 23v-28m45 28v-28m45 32v-26m45 35v-27" stroke="#253d53" stroke-width="8"/>
+<path d="M973 177 1193 123l237 52" stroke="#7d92a9" stroke-width="7" stroke-opacity=".42"/>
+<!-- front tower -->
+<path d="m1011 100 76-28 89 20 7 294-171 46z" fill="url(#tower)"/>
+<path d="m1088 73 90 20 11 298-101-30z" fill="#132a42"/>
+<path d="m990 98 106-43 117 28-26 29-93-23-80 28z" fill="#11283d"/>
+<path d="M996 96 1094 56l113 28" stroke="#6985a0" stroke-width="6"/>
+<path d="M1017 120v-40m38 23V63m39 23V48m39 39V56m40 43V74" stroke="#253b50" stroke-width="8"/>
+<path d="M1042 155h37v45h-37zm55-12h42v51h-42zm56 10h29v46h-29z" fill="#f6a654" opacity=".9"/>
+<path d="M1045 158h32v37h-32zm55-12h36v43h-36zm56 11h24v37h-24z" fill="#f9c06c" opacity=".48"/>
+<path d="M1009 214 1184 208" stroke="#182d41" stroke-width="14"/>
+<path d="m1028 248 146-6v157l-146 29z" fill="#1c364f"/>
+<path d="M1038 260h48v71h-48z" fill="#091f35"/>
+<path d="M1096 259h62v71h-62z" fill="#102a43"/>
+<path d="M1042 263h39v6h-39zm58-1h55v6h-55z" fill="#54788f" opacity=".42"/>
+<!-- right rear building and battlements -->
+<path d="m1280 199 232-36 155 42-228 61z" fill="#263e53"/>
+<path d="m1280 201 158 64v353l-161-50z" fill="#1b3148"/>
+<path d="m1438 265 162-44v361l-162 40z" fill="#0d253c"/>
+<path d="M1276 200v-36m42 45v-44m42 57v-45m41 62v-44m42 70v-43m44 35v-44m42 39v-43" stroke="#23374d" stroke-width="8"/>
+<path d="m1275 165 208-40 117 59" stroke="#66849b" stroke-opacity=".5" stroke-width="7"/>
+<path d="M1280 326 1439 376l160-47" stroke="#708ea8" stroke-opacity=".36" stroke-width="8"/>
+<path d="M1282 484 1438 531l160-42" stroke="#6b8da6" stroke-opacity=".22" stroke-width="8"/>
+<path d="M1350 290h50v17h-50zm9 118h46v16h-46z" fill="#ffb46d" opacity=".5"/>
+<!-- hanging tactical banner, without baked text -->
+<path d="m1322 213 119 39v241l-61-18-58 13z" fill="url(#banner)"/>
+<path d="m1352 273 66 19-39 99-60 15z" fill="#db793e" opacity=".65"/>
+<path d="m1373 295 36 10-39 72-30 6z" fill="#ff9e47" opacity=".82"/>
+<path d="M1324 213 1441 252" stroke="#ae694a" stroke-width="8"/>
+<!-- industrial support structure / lit entrances -->
+<path d="m911 540 327 58 310-76 52 89-363 116-350-82z" fill="#172c40"/>
+<path d="m930 568 302 61 305-76" stroke="#698aa3" stroke-opacity=".4" stroke-width="6"/>
+<path d="M996 572h53v58l-53-12zm82 15 52 11v50l-52-12z" fill="#f5a757" opacity=".65"/>
+<path d="m1266 594 65-20v65l-65 22z" fill="#d47d4e" opacity=".8"/>
+<path d="m1392 555 65-22v76l-65 20z" fill="#e9a36a" opacity=".6"/>
+<!-- foreground parapet and structures -->
+<path d="M0 682 550 575l184 43 76 280H0z" fill="#0a2237" opacity=".7"/>
+<path d="M812 619 1197 724l403-140v316H760z" fill="url(#road)"/>
+<path d="m825 635 373 110 402-139" stroke="#57758d" stroke-opacity=".36" stroke-width="6"/>
+<path d="m901 680 288 84 371-131" stroke="#7f9caf" stroke-opacity=".19" stroke-width="4"/>
+<path d="M1159 713 1231 709l86 191h-104z" fill="#0d2032"/>
+<path d="M1544 601 1600 584v316h-56z" fill="#142a40"/>
+<path d="M1598 720 1293 806v94h307z" fill="#0a1d32"/>
+<!-- warm beacon points, narrow inexpensive vector glows -->
+<path d="M1100 41v38" stroke="#ff8f37" stroke-width="3"/><circle cx="1100" cy="40" r="5" fill="#ffa54e"/>
+<path d="M1100 20v15m-12 6h-13m38 0h12" stroke="#ffae5c" stroke-opacity=".3" stroke-width="2"/>
+<path d="M1570 368v25" stroke="#ff8c39" stroke-width="3"/><circle cx="1570" cy="362" r="4" fill="#ffa549"/>
+<!-- foreground haze -->
+<path d="M0 760q220-56 397 5t394 19q201-40 376-18t433-12v146H0z" fill="#081827" opacity=".48"/>
+</svg>
