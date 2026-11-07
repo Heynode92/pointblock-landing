@@ -249,8 +249,8 @@ function renderFAQ() {
 function initialize() {
   const pbtLogo = get('#pbtLogo');
   if (pbtLogo) {
-    pbtLogo.addEventListener('load', () => { pbtLogo.hidden = false; }, { once: true });
-    pbtLogo.addEventListener('error', () => { pbtLogo.hidden = true; }, { once: true });
+    pbtLogo.addEventListener('load', () => { pbtLogo.dataset.state = 'ready'; }, { once: true });
+    pbtLogo.addEventListener('error', () => { pbtLogo.dataset.state = 'error'; }, { once: true });
     pbtLogo.src = PBT_LOGO_URL;
   }
   setupGameLinks();
