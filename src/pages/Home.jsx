@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import deathmatchVideo from '../assets/video/deatch_match_demo.mp4';
 import { FiArrowRight, FiArrowUpRight, FiCrosshair, FiMap, FiMonitor, FiPause, FiPlay, FiShield, FiTarget, FiZap } from 'react-icons/fi';
-import { ContractTable, DesktopNotice, NetworkBadge, PlayButton, SectionHeading } from '../components.jsx';
+import { ContractTable, DesktopNotice, PlayButton, SectionHeading } from '../components.jsx';
 import { MODES, MAPS } from '../content.js';
 
 const highlights=[
@@ -79,7 +79,6 @@ export default function Home(){
    <section className="home-hero">
      <div className="container hero-grid">
        <div className="hero-copy">
-         <NetworkBadge/>
          <p className="eyebrow hero-kicker"><span className="accent-slice"/> THE NEXT FRONTLINE <span className="hero-kicker-bars" aria-hidden="true">////</span></p>
          <h1 className="display-title">POINT<span>BLOCK</span><strong>THE BATTLE BEGINS.</strong></h1>
          <p className="hero-lead">A competitive 5v5 browser FPS. Built for players. <b>Built for Robinhood Chain.</b></p>
