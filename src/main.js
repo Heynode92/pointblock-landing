@@ -1,5 +1,5 @@
 import './style.css';
-import { GAME_REPOSITORY, MODES, MAPS, ARSENAL, FAQ, gameDestination } from './content.js';
+import { MODES, MAPS, ARSENAL, FAQ, PBT_LOGO_URL, gameDestination } from './content.js';
 
 const get = (selector, root = document) => root.querySelector(selector);
 const all = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -247,6 +247,12 @@ function renderFAQ() {
 }
 
 function initialize() {
+  const pbtLogo = get('#pbtLogo');
+  if (pbtLogo) {
+    pbtLogo.addEventListener('load', () => { pbtLogo.hidden = false; }, { once: true });
+    pbtLogo.addEventListener('error', () => { pbtLogo.hidden = true; }, { once: true });
+    pbtLogo.src = PBT_LOGO_URL;
+  }
   setupGameLinks();
   setupNavigation();
   setupShowcase();
