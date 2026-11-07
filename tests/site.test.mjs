@@ -185,7 +185,7 @@ test('About explains PointBlock from verified game features with coherent editor
   'FROM RECRUIT','TWO MODES','BUILT AROUND','EVERY MAP',
   'GAMING FIRST','PROJECT STATUS'
  ]) assert.ok(source.includes(title), 'Missing About explanation: '+title);
- assert.match(source,/PointBlock is a browser-based tactical first-person shooter/);
+ assert.match(source,/A competitive 5v5 first-person shooter/);
  assert.match(source,/Our focus is a game-first experience/);
  assert.match(source,/training objective of 10 combined team kills within a five-minute session/);
  assert.match(source,/Wallet sign-in uses a backend-verified signature/);
@@ -209,7 +209,7 @@ test('About explains PointBlock from verified game features with coherent editor
 test('About is a dedicated editorial project page without Home-style video or launch CTA',()=>{
  const aboutCss=read('src/styles/about-editorial.css');
  assert.match(about,/aria-labelledby="about-heading"/);
- assert.match(about,/className="about-introduction"/);
+ assert.match(about,/className="container about-introduction"/);
  assert.match(about,/id="about-heading">ABOUT <em>POINTBLOCK\.<\/em>/);
  assert.match(about,/THE GAME/);
  assert.match(about,/THE VISION/);
