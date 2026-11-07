@@ -417,8 +417,6 @@
 }
 @media(max-width:420px){
  .home-hero .hero-grid{gap:24px}
- .home-hero .network-badge{font-size:9px;letter-spacing:.065em}
- .home-hero .network-chain{font-size:9px}
  .home-hero .hero-kicker{font-size:10px}
  .home-hero .display-title{font-size:clamp(39px,10.3vw,49px)}
  .home-hero .hero-muted{font-size:14px}
