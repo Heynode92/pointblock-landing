@@ -55,12 +55,15 @@ function setupNavigation() {
   });
 
   if ('IntersectionObserver' in window) {
+    let activeSection = '';
     const navLinks = all('a[href^="#"]', get('#desktopNav'));
     const sections = navLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
     const observer = new IntersectionObserver((items) => {
       const visible = items.filter((item) => item.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
       if (!visible.length) return;
       const current = '#' + visible[0].target.id;
+      if (current === activeSection) return;
+      activeSection = current;
       navLinks.forEach((link) => {
         const active = link.getAttribute('href') === current;
         link.classList.toggle('is-active', active);
@@ -186,6 +189,15 @@ function setupShowcase() {
   document.addEventListener('visibilitychange', () => {
     if (document.hidden && !video.paused) video.pause();
   });
+  // The gameplay clip may be large; never keep decoding it while the player
+  // is reading sections below the showcase. No scroll or timer listeners.
+  const showcase = get('#showcase');
+  if (showcase && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry && !entry.isIntersecting && !video.paused) video.pause();
+    }, { threshold: 0 });
+    observer.observe(showcase);
+  }
   renderModes((id) => selectMode(id, true));
   selectMode('deathmatch');
 }
