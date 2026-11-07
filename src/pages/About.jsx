@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import {
-  FiArrowRight, FiArrowUpRight, FiCheckCircle, FiLock, FiShield, FiTarget
+  FiArrowRight, FiArrowUpRight, FiCheckCircle, FiCrosshair, FiLock, FiShield, FiTarget
 } from 'react-icons/fi';
 import { DesktopNotice, PlayButton } from '../components.jsx';
 import { MODES, MAPS, LOADOUT, NETWORK } from '../content.js';
