@@ -1,33 +1,35 @@
-# PointBlock — Official Game Landing Page
+# PointBlock Landing Website
 
-The standalone public-facing landing page for the PointBlock browser FPS. This repository is intentionally separate from the [game frontend](https://github.com/Heynode92/blockbudies) and does not connect wallets, issue tokens, or collect player credentials.
+Independent marketing website for PointBlock, a desktop-browser 5v5 tactical FPS built for the Robinhood Chain ecosystem. Not affiliated with or endorsed by Robinhood Markets, Inc.
 
 ## Stack
-- Vite + vanilla JavaScript
-- Tailwind CSS v4 via `@tailwindcss/vite`
-- Mobile-first tactical UI inspired by the game frontend
+Vite 8, React 19, React Router 8, Tailwind CSS v4, React Icons. Pages: Home (/), About (/about), Tokenomics (/tokenomics), Play to Earn (/play-to-earn), Map (/maps). Routes use the browser History API, not URL hashes.
 
-## Local development (Windows PowerShell)
+## Windows PowerShell
 ```powershell
-git clone https://github.com/Heynode92/pointblock-landing.git
-cd pointblock-landing
+cd D:\robinhood\blockbuddies\pointblock-landing
+git pull origin main
 npm install
 npm run dev
 ```
+Dev server: http://127.0.0.1:5174 . Local PLAY NOW defaults to http://localhost:5173 when game FE is running.
 
-To create a production bundle, run `npm run build`. Output: `dist/`.
+Build production bundle with npm run build; run focused checks with npm run check. Static hosting requires SPA fallback to index.html. Netlify uses public/_redirects and Vercel uses vercel.json.
 
-## Content policy and project status
-All mode, map, progression, economy, and network details are derived from the [PointBlock frontend](https://github.com/Heynode92/blockbudies) at the time of implementation. Source references are documented in `src/content.js` and `docs/SOURCE-OF-TRUTH.md`.
+## Public environment (see .env.example)
+- VITE_POINTBLOCK_GAME_URL: real approved HTTPS game deployment. When unset in production, PLAY NOW remains visibly disabled rather than leading to a fake game URL.
+- VITE_PBT_CONTRACT_ADDRESS: official token contract, leave empty until announced.
+- VITE_POINTBLOCK_X_URL, VITE_POINTBLOCK_TELEGRAM_URL, VITE_POINTBLOCK_DISCORD_URL: optional official PointBlock community channels. Unconfigured icons remain inactive.
 
-**The PBT token and EARN conversion are not live.** vPBT is the in-game balance managed by the game backend. Do not present the converter's 1:1 UI preview as a market rate or price. The landing page does not connect wallets or promise rewards, an active token, release dates or matchmaking availability.
+All VITE_ variables are publicly visible in a deployed frontend; never put secrets in them.
 
-Gameplay video sources are the existing FE assets on the same owner's GitHub repository, loaded only on user interaction, not embedded from unrelated sites. See `src/content.js`.
+## Verified game information
+Robinhood Chain Mainnet ID 4663, ETH gas, browser FPS Team Deathmatch and Bomb Mission, five game maps, server-based EXP/vPBT progression. The PBT token is not announced as live. No verified official token contract, allocations, token exchange, market rate, launch date or public social channels are assumed.
 
-## Game CTA
-Set `VITE_POINTBLOCK_GAME_URL` to the real, approved HTTPS game deployment when available. Without this variable the CTA safely links to the verified game frontend repository and says **VIEW GAME SOURCE**, not **PLAY NOW**. Never expose API secrets through `VITE_*`.
+Game currently runs on desktop web browsers only. Mobile gameplay is in development; the landing page itself is mobile responsive.
 
-## Deployment
-This is a static Vite site. Configure your host to serve `dist/` with `index.html` as the default route. Add security headers (CSP, HSTS and referrer policy) at the host level after confirming the deployment origin and media rules.
+## Copied media
+The FE's lightweight operator artwork is copied to public/media/operator-hero.webp. The FE's vPBT icon is stored locally in src/assets/vpbt-logo.png. Videos larger than 8 MB were deliberately excluded after scroll performance issues. This site does not load media from the game source repository and shows no links to its future-private source.
 
-No analytics, wallets, smart-contract approvals, or background API requests are shipped in this repository.
+## Security
+The website never asks for wallet signatures, token approvals or transfers. Token contract links are shown only after the owner configures a valid address; official community domains are allowlisted. Robinhood Chain explorer and documentation links point to official network resources.
