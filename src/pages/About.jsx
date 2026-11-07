@@ -83,7 +83,7 @@ export default function About() {
       <div className="container about-hero-layout">
         <div className="about-hero-intro">
           <p className="about-eyebrow"><span /> POINTBLOCK / PROJECT OVERVIEW</p>
-          <h1>MORE THAN<br />A MATCH.<br /><em>A BATTLE TO MASTER.</em></h1>
+          <h1>MORE THAN<br />A MATCH.<br /><em>A BATTLE<br />TO MASTER.</em></h1>
           <p className="about-hero-lead">PointBlock is a browser-based tactical first-person shooter built around 5v5 team combat, skill-driven gunplay and persistent operator progression.</p>
           <p className="about-hero-body">Take the role of Police or Terrorists, enter two distinct game modes and fight across five battlefields. Behind every match is a connected system of player identity, equipment, competitive statistics and server-recorded results.</p>
           <div className="about-hero-actions">
