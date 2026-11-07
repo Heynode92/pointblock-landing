@@ -1,4 +1,6 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
+import deathmatchVideo from '../assets/video/deatch_match_demo.mp4';
 import { FiArrowRight, FiArrowUpRight, FiCrosshair, FiMap, FiMonitor, FiShield, FiTarget, FiZap } from 'react-icons/fi';
 import { ContractTable, DesktopNotice, NetworkBadge, PlayButton, SectionHeading } from '../components.jsx';
 import { MODES, MAPS } from '../content.js';
@@ -8,6 +10,55 @@ const highlights=[
  {number:'02',label:'GAME MODES',sub:'DEATHMATCH + BOMB',Icon:FiTarget},
  {number:'5V5',label:'TEAM COMBAT',sub:'POLICE VS TERRORISTS',Icon:FiCrosshair}
 ];
+
+function HeroGameplayVideo(){
+ const ref=useRef(null);
+ const [failed,setFailed]=useState(false);
+ useEffect(()=>{
+  const video=ref.current;
+  if(!video)return;
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const saveData=navigator.connection?.saveData===true;
+  // Respect accessibility and metered connections while autoplaying on
+  // normal desktop browsers. The fallback keeps the visual present.
+  if(reduceMotion.matches||saveData)return;
+  let visible=false;
+  const play=()=>{
+   if(!visible||document.hidden||reduceMotion.matches)return;
+   const pending=video.play();
+   if(pending?.catch)pending.catch(()=>{/* Browser policy may block autoplay. */});
+  };
+  const update=()=>{
+   if(visible&&!document.hidden)play();
+   else video.pause();
+  };
+  const observer=new IntersectionObserver(([entry])=>{
+   visible=Boolean(entry?.isIntersecting);
+   update();
+  },{threshold:0.1});
+  const onMotion=()=>{if(reduceMotion.matches)video.pause();else update();};
+  observer.observe(video);
+  document.addEventListener('visibilitychange',update);
+  reduceMotion.addEventListener?.('change',onMotion);
+  return()=>{
+   observer.disconnect();
+   document.removeEventListener('visibilitychange',update);
+   reduceMotion.removeEventListener?.('change',onMotion);
+   video.pause();
+  };
+ },[]);
+ return <div className="hero-gameplay">
+   <video ref={ref} className="hero-gameplay-video" src={deathmatchVideo}
+     autoPlay muted loop playsInline preload="metadata" disablePictureInPicture
+     aria-label="PointBlock Team Deathmatch gameplay footage"
+     onError={()=>setFailed(true)} />
+   {failed&&<div className="hero-gameplay-fallback" role="status">GAMEPLAY PREVIEW UNAVAILABLE</div>}
+   <div className="hero-gameplay-caption" aria-hidden="true">
+     <span>GAMEPLAY FOOTAGE</span><strong>TEAM DEATHMATCH</strong>
+     <span>5V5 // POINTBLOCK</span>
+   </div>
+ </div>;
+}
 
 export default function Home(){
  return <>
@@ -24,14 +75,7 @@ export default function Home(){
        </div>
        <div className="hero-visual" aria-label="PointBlock visual composition">
          <div className="hero-visual-head"><span><FiCrosshair aria-hidden="true"/> POINTBLOCK // FIELD OPS</span><span>RH / 4663</span></div>
-         <div className="battle-art">
-           <div className="battle-ring ring-one"/><div className="battle-ring ring-two"/>
-           <div className="battle-skyline"><i/><i/><i/><i/><i/><i/></div>
-           <div className="battle-accent-slash"/>
-           <div className="battle-insignia">PB<span>///</span></div>
-           <img className="hero-operator" src="/media/operator-hero.webp" alt="PointBlock tactical operator artwork" loading="eager" decoding="async"/>
-           <div className="battle-corner-label">POLICE <b>05</b> <span>VS</span> <b>05</b> TERRORIST</div>
-         </div>
+         <HeroGameplayVideo/>
          <div className="hero-visual-bottom"><span><span className="tiny-orange"/> BROWSER FPS</span><span>BUILT FOR ROBINHOOD CHAIN</span></div>
        </div>
      </div>
