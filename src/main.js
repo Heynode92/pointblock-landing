@@ -137,7 +137,7 @@ function setupShowcase() {
     });
     if (scrollToPreview) {
       const preview = get('#showcase');
-      preview?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'center' });
+      preview?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
       playButton.focus({ preventScroll: true });
     }
   }
