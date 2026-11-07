@@ -1,0 +1,38 @@
+name: Landing targeted validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'index.html'
+      - 'package.json'
+      - 'vite.config.js'
+      - 'public/**'
+      - 'tests/**'
+      - '.github/workflows/landing-quality.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'index.html'
+      - 'package.json'
+      - 'vite.config.js'
+      - 'public/**'
+      - 'tests/**'
+
+jobs:
+  landing:
+    name: Check landing only
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install declared packages
+        run: npm install --no-audit --no-fund
+      - name: Focused landing checks
+        run: npm run check
+      - name: Vite production compilation
+        run: npm run build
