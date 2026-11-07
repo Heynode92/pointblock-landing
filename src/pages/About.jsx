@@ -261,7 +261,7 @@ export default function About() {
         <div className="about-section-header">
           <div>
             <p className="about-eyebrow"><span /> 07 / PROJECT STATUS</p>
-            <h2>BUILT IN PUBLIC.<br /><em>DEVELOPED WITH PURPOSE.</em></h2>
+            <h2>BUILT IN STAGES.<br /><em>REFINED WITH PURPOSE.</em></h2>
           </div>
           <p>We distinguish what is represented in the game source from what still requires production verification.</p>
         </div>
