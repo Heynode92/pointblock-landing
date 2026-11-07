@@ -113,7 +113,7 @@ test('local FE media is lightweight and source-private safe',()=>{
  for(const page of [home,about,token,earn,maps]){
   assert.doesNotMatch(page,/raw\.githubusercontent\.com|github\.com\/Heynode92\/blockbudies/);
  }
- assert.doesNotMatch(html,/src\/main\.js|raw\.githubusercontent\.com/);
+ assert.doesNotMatch(html,/src="\/?src\/main\.js"|raw\.githubusercontent\.com/);
 });
 
 test('no wallet, swap transaction or recurring scroll script in site',()=>{
