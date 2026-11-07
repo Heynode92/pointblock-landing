@@ -174,7 +174,7 @@ function setupShowcase() {
     button.addEventListener('click', () => selectMode(button.dataset.modeSelect));
   });
   video.addEventListener('error', () => {
-    if (video.currentSrc) showMediaError();
+    if (video.currentSrc && stage.dataset.state !== 'idle') showMediaError();
   });
   video.addEventListener('playing', () => { stage.dataset.state = 'playing'; });
   video.addEventListener('pause', () => {
