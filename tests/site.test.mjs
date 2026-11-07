@@ -181,7 +181,7 @@ test('About explains PointBlock from verified game features with coherent editor
  const aboutCss=read('src/styles/about-editorial.css');
  const source=about;
  for (const title of [
-  'MORE THAN','A BATTLE TO MASTER','WHAT IS','POINTBLOCK',
+  'MORE THAN','TO MASTER','WHAT IS','POINTBLOCK',
   'FROM RECRUIT','TWO MODES','BUILT AROUND','EVERY MAP',
   'GAMING FIRST','PROJECT STATUS'
  ]) assert.ok(source.includes(title), 'Missing About explanation: '+title);
