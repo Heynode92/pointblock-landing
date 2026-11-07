@@ -163,3 +163,15 @@ test('reference-inspired cinematic hero is real React/CSS, not a baked UI image'
  assert.match(read('src/main.jsx'),/import '\.\/styles\/home-cinematic\.css';/);
  assert.equal((homeCss.match(/\{/g)||[]).length,(homeCss.match(/\}/g)||[]).length);
 });
+
+
+test('Home removes the hero Robinhood chain badge and lifts primary content',()=>{
+ const cinema=read('src/styles/home-cinematic.css');
+ assert.doesNotMatch(home, /<NetworkBadge\s*\/>/);
+ assert.match(home, /THE NEXT FRONTLINE/);
+ assert.match(home, /className="hero-visual"/);
+ assert.match(cinema, /padding-top:clamp\(34px,3\.5vw,62px\)/);
+ assert.match(cinema, /\.home-hero \.hero-kicker\{\s*margin:10px 0 22px;/);
+ assert.doesNotMatch(cinema, /\.home-hero \.network-badge\{/);
+ assert.match(home, /Built for Robinhood Chain/);
+});
