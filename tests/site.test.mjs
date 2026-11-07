@@ -175,3 +175,44 @@ test('Home removes the hero Robinhood chain badge and lifts primary content',()=
  assert.doesNotMatch(cinema, /\.home-hero \.network-badge\{/);
  assert.match(home, /Built for Robinhood Chain/);
 });
+
+
+test('About explains PointBlock from verified game features with coherent editorial hierarchy',()=>{
+ const aboutCss=read('src/styles/about-editorial.css');
+ const source=about;
+ for (const title of [
+  'MORE THAN','A BATTLE TO MASTER','WHAT IS','POINTBLOCK',
+  'FROM RECRUIT','TWO MODES','BUILT AROUND','EVERY MAP',
+  'GAMING FIRST','PROJECT STATUS'
+ ]) assert.ok(source.includes(title), 'Missing About explanation: '+title);
+ assert.match(source,/PointBlock is a browser-based tactical first-person shooter/);
+ assert.match(source,/Our focus is a game-first experience/);
+ assert.match(source,/training objective of 10 combined team kills within a five-minute session/);
+ assert.match(source,/Wallet sign-in uses a backend-verified signature/);
+ assert.match(source,/19 distinct weapon profiles/);
+ assert.match(source,/PBT-related functionality and the in-game converter remain coming-soon/);
+ assert.match(source,/production verification/);
+ assert.match(source,/Mobile gameplay|mobile gameplay/);
+ assert.match(source,/journey\.map/);
+ assert.match(source,/MODES\.map/);
+ assert.match(source,/MAPS\.map/);
+ assert.match(source,/LOADOUT\.map/);
+ assert.match(aboutCss,/\.about-page \.about-purpose-layout\{/);
+ assert.match(aboutCss,/\.about-page \.about-journey\{/);
+ assert.match(aboutCss,/\.about-page \.about-mode-row\{/);
+ assert.match(aboutCss,/\.about-page \.about-ecosystem-layout\{/);
+ assert.match(aboutCss,/@media\(max-width:980px\)/);
+ assert.match(aboutCss,/@media\(max-width:700px\)/);
+ assert.equal((aboutCss.match(/\{/g)||[]).length,(aboutCss.match(/\}/g)||[]).length);
+ assert.match(read('src/main.jsx'),/import '\.\/styles\/about-editorial\.css';/);
+});
+test('About uses source footage only on click and does not auto-download another heavy video',()=>{
+ assert.match(about,/import bombMissionFootage from '\.\.\/assets\/video\/bomb_mission_demo\.mp4'/);
+ assert.match(about,/enabled\s*\?/);
+ assert.match(about,/src=\{bombMissionFootage\}/);
+ assert.match(about,/onClick=\{\(\) => setEnabled\(true\)\}/);
+ assert.match(about,/controls autoPlay muted playsInline preload="metadata"/);
+ assert.match(about,/WATCH ACTUAL GAMEPLAY/);
+ assert.doesNotMatch(about,/github\.com\/Heynode92\/blockbudies|raw\.githubusercontent\.com/);
+ assert.doesNotMatch(about,/window\.ethereum|eth_requestAccounts|sendTransaction|innerHTML\s*=/);
+});
