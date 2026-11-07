@@ -255,7 +255,8 @@ a,button{touch-action:manipulation}
 .pbt-placeholder>span>span{color:#0a1c2f}
 .pbt-placeholder{position:relative}
 .pbt-placeholder img{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:83px;height:83px;object-fit:contain;filter:drop-shadow(0 6px 16px #0008)}
-.pbt-placeholder img[hidden]{display:none!important}
+.pbt-placeholder img[data-state="loading"],.pbt-placeholder img[data-state="error"]{opacity:0}
+.pbt-placeholder img[data-state="ready"]{opacity:1}
 .wallet-symbol-hex{display:grid;place-items:center;width:85px;height:85px;clip-path:polygon(50% 0,96% 25%,96% 75%,50% 100%,4% 75%,4% 25%);background:linear-gradient(135deg,#42ce9b,#114f58);font-size:36px;color:#0b2534}
 .economy-card h3{margin:0 0 10px;font:italic 900 clamp(29px,2.5vw,41px)/1.1 Impact,sans-serif}
 .economy-card p{margin:0;color:#a5c3d5;font-size:16px;line-height:1.35}
