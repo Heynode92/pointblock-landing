@@ -181,7 +181,7 @@ test('About explains PointBlock from verified game features with coherent editor
  const aboutCss=read('src/styles/about-editorial.css');
  const source=about;
  for (const title of [
-  'MORE THAN','TO MASTER','WHAT IS','POINTBLOCK',
+  'ABOUT','POINTBLOCK','WHAT IS',
   'FROM RECRUIT','TWO MODES','BUILT AROUND','EVERY MAP',
   'GAMING FIRST','PROJECT STATUS'
  ]) assert.ok(source.includes(title), 'Missing About explanation: '+title);
@@ -206,13 +206,21 @@ test('About explains PointBlock from verified game features with coherent editor
  assert.equal((aboutCss.match(/\{/g)||[]).length,(aboutCss.match(/\}/g)||[]).length);
  assert.match(read('src/main.jsx'),/import '\.\/styles\/about-editorial\.css';/);
 });
-test('About uses source footage only on click and does not auto-download another heavy video',()=>{
- assert.match(about,/import bombMissionFootage from '\.\.\/assets\/video\/bomb_mission_demo\.mp4'/);
- assert.match(about,/enabled\s*\?/);
- assert.match(about,/src=\{bombMissionFootage\}/);
- assert.match(about,/onClick=\{\(\) => setEnabled\(true\)\}/);
- assert.match(about,/controls autoPlay muted playsInline preload="metadata"/);
- assert.match(about,/WATCH ACTUAL GAMEPLAY/);
+test('About is a dedicated editorial project page without Home-style video or launch CTA',()=>{
+ const aboutCss=read('src/styles/about-editorial.css');
+ assert.match(about,/aria-labelledby="about-heading"/);
+ assert.match(about,/className="about-introduction"/);
+ assert.match(about,/id="about-heading">ABOUT <em>POINTBLOCK\.<\/em>/);
+ assert.match(about,/THE GAME/);
+ assert.match(about,/THE VISION/);
+ assert.match(about,/className="about-introduction-facts"/);
+ assert.match(aboutCss,/\.about-page \.about-introduction-content\{/);
+ assert.match(aboutCss,/\.about-page \.about-introduction-facts\{/);
+ assert.match(aboutCss,/@media\(max-width:700px\)/);
+ assert.doesNotMatch(about,/AboutFootage|bombMissionFootage|<video|WATCH ACTUAL GAMEPLAY|useState/);
  assert.doesNotMatch(about,/github\.com\/Heynode92\/blockbudies|raw\.githubusercontent\.com/);
+ assert.doesNotMatch(aboutCss,/about-footage|about-fact-strip|about-hero-layout|pointblock-battlefield\.svg/);
+ const intro=about.split('<section className="about-section about-purpose">')[0];
+ assert.doesNotMatch(intro,/<PlayButton|<video|<img|<iframe/);
  assert.doesNotMatch(about,/window\.ethereum|eth_requestAccounts|sendTransaction|innerHTML\s*=/);
 });
