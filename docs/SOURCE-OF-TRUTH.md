@@ -1,37 +1,23 @@
-# PointBlock landing — verified game source
+# PointBlock landing — FE source audit
 
-This site presents existing game features and must not imply a public backend, wallet login on this site, a token launch, or any trading service.
+This is internal project documentation. The public website does not link to the original game source repository.
 
-## Game source snapshot
-
-Official FE: https://github.com/Heynode92/blockbudies
-
-Pinned revision: dacb4da39ade296d8bcd94b3a62e741ed22461db
-
-| Section | Verified FE file | Facts |
+| Site content | Existing FE source | Verified data |
 | --- | --- | --- |
-| Branding | index.html, src/styles/13-home-header.css | Point Block, dark navy and orange tactical HUD, Police vs Terrorist FPS |
-| Gameplay videos | docs/HOME_MENU_SHOWCASE.md and src/game/82-home-showcase.js | Original Deathmatch and Bomb Mission clips, including exact filename deatch_match_demo.mp4 |
-| Bomb mode | src/game/11-bomb-map.js | 5v5 objective play, planting and defusing, bomb sites A/B |
-| Deathmatch maps | src/game/13-block-labs.js | Block District (Outdoor Urban Combat) and Block Labs (Indoor Research Facility) |
-| Bomb maps | src/game/12-block-town.js | Lockdown (Indoor Tactical Arena), Block Town (Outdoor Urban Town), Hospital (Indoor Medical Center) |
-| Inventory | src/game/89-inventory.js | Main Weapon, Secondary, Melee, Explosive; also Helm and Item in game |
-| Progression | src/game/81-rank-insignia.js and src/game/89-leaderboard.js | Trainee progression and Top 10 by server-ranked progression, with total kills and headshot kill percentage |
-| Economy | src/game/89-earn.js | vPBT is tracked in-game; PBT and converter are coming soon |
-| Chain | docs/ROBINHOOD_CHAIN_WALLET.md | Game sign-in requires Robinhood Chain Mainnet |
+| Network | docs/ROBINHOOD_CHAIN_WALLET.md | Robinhood Chain Mainnet, ID 4663, ETH gas |
+| Combat | src/game/11-bomb-map.js and src/game/82-home-showcase.js | 5v5 Team Deathmatch and Bomb Mission |
+| Maps | src/game/13-block-labs.js and src/game/12-block-town.js | District, Labs, Lockdown, Town, Hospital |
+| Inventory | src/game/89-inventory.js | Main weapon, secondary, melee, explosive |
+| Progression | src/game/81-rank-insignia.js and src/game/89-leaderboard.js | Trainee ranks and top 10 |
+| Rewards | src/game/89-earn.js | Backend-tracked vPBT; 1:1 converter is UI preview only |
+| Media | src/assets/registration/operator-hero.webp and src/assets/icon/vPBT-logo.png | Local copies on landing |
 
-## No fabricated launch claims
+Official network documentation: https://docs.robinhood.com/chain/connecting/
 
-The site does not claim live player counts, an active PBT token, prices, withdrawals, conversion, trading, yields, contract address, active marketplace or matchmaking uptime. It does not present a deployment address not provided by the project owner.
+PBT contract address, total supply, distribution, public game deployment URL and project social links have not been provided or verified. The site avoids fabricated information and requires owner configuration.
 
-When the actual public game URL is known, set VITE_POINTBLOCK_GAME_URL to its approved HTTPS URL. Without it, every game CTA says VIEW GAME SOURCE and links to the FE GitHub repository. Loopback HTTP is allowed for developer testing only.
+Selected FE media copied into landing: tiny operator artwork (2.7 KB) and vPBT icon. Original FE videos (8.5 MB and 21.3 MB) are excluded for responsiveness and future source-repository privacy.
 
-## Media
+Playable PointBlock currently targets desktop web browsers; mobile gameplay remains under development. The informational landing is responsive on mobile.
 
-Actual gameplay videos are owner-controlled FE files on raw.githubusercontent.com, pinned to the revision above, loaded only after a user clicks Play. The local vPBT coin image is copied from the FE. Other abstract illustrations are decorative CSS/SVG artwork and not represented as real in-game screenshots or map layouts. No unrelated stock images.
-
-## Tech and privacy
-
-Vite 8 + vanilla JS, Tailwind v4 and the official Vite plugin. Installation follows https://vite.dev/guide/ and https://tailwindcss.com/docs/installation/using-vite .
-
-No wallet connectors, token contracts, analytics SDKs, authentication forms or invisible user-data requests are included in this landing page.
+BrowserRouter provides /, /about, /tokenomics, /play-to-earn, /maps. Static hosts need SPA fallback to index.html.
