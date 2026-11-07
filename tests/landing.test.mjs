@@ -11,9 +11,9 @@ const main = read('src/main.js');
 test('brand and stack match the game frontend', () => {
   const pkg = JSON.parse(read('package.json'));
   assert.equal(pkg.type, 'module');
-  assert.equal(pkg.devDependencies.vite.startsWith('^8.'), true);
-  assert.equal(pkg.devDependencies.tailwindcss.startsWith('^4.'), true);
-  assert.equal(pkg.devDependencies['@tailwindcss/vite'].startsWith('^4.'), true);
+  assert.equal(pkg.devDependencies.vite === '8.3.5', true);
+  assert.equal(pkg.devDependencies.tailwindcss === '4.3.0', true);
+  assert.equal(pkg.devDependencies['@tailwindcss/vite'] === '4.3.0', true);
   assert.match(css, /@import "tailwindcss";/);
   assert.match(html, /POINT/);
   assert.match(html, /BLOCK/);
