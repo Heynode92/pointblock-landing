@@ -13,6 +13,7 @@
 export const GAME_REPOSITORY = 'https://github.com/Heynode92/blockbudies';
 export const GAME_SOURCE_REVISION = 'dacb4da39ade296d8bcd94b3a62e741ed22461db';
 export const GAME_SOURCE_ROOT = GAME_REPOSITORY + '/blob/' + GAME_SOURCE_REVISION;
+export const PBT_LOGO_URL = 'https://raw.githubusercontent.com/Heynode92/blockbudies/' + GAME_SOURCE_REVISION + '/src/assets/icon/pb-logo.png';
 const footageRoot = 'https://raw.githubusercontent.com/Heynode92/blockbudies/' + GAME_SOURCE_REVISION + '/src/assets/video/';
 
 export const MODES = Object.freeze([
