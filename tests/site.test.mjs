@@ -224,3 +224,23 @@ test('About is a dedicated editorial project page without Home-style video or la
  assert.doesNotMatch(intro,/<PlayButton|<video|<img|<iframe/);
  assert.doesNotMatch(about,/window\.ethereum|eth_requestAccounts|sendTransaction|innerHTML\s*=/);
 });
+
+
+test('all rendered react-icons/fi symbols are explicitly imported',()=>{
+ for(const page of [
+  'src/pages/Home.jsx',
+  'src/pages/About.jsx',
+  'src/pages/Tokenomics.jsx',
+  'src/pages/PlayToEarn.jsx',
+  'src/pages/Maps.jsx',
+  'src/components.jsx'
+ ]){
+  const source=read(page);
+  const blocks=[...source.matchAll(/import\s*\{([\s\S]*?)\}\s*from\s*['"]react-icons\/fi['"]/g)];
+  const declared=new Set(blocks.flatMap(m=>[...m[1].matchAll(/\bFi[A-Z]\w*\b/g)].map(x=>x[0])));
+  const used=new Set([...source.matchAll(/\bFi[A-Z]\w*\b/g)].map(x=>x[0]));
+  for(const icon of used){
+   assert.ok(declared.has(icon),page+' references '+icon+' without an import');
+  }
+ }
+});
