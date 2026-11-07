@@ -108,12 +108,25 @@ test('mobile drawer slides right-to-left and closes on route, Escape, or outside
 });
 
 test('local FE media is lightweight and source-private safe',()=>{
- assert.match(home,/src="\/media\/operator-hero\.webp"/);
+ assert.match(home,/import deathmatchVideo from '\.\.\/assets\/video\/deatch_match_demo\.mp4'/);
  assert.match(token,/import vpbtLogo from '\.\.\/assets\/vpbt-logo\.png'/);
  for(const page of [home,about,token,earn,maps]){
   assert.doesNotMatch(page,/raw\.githubusercontent\.com|github\.com\/Heynode92\/blockbudies/);
  }
  assert.doesNotMatch(html,/src="\/?src\/main\.js"|raw\.githubusercontent\.com/);
+});
+
+test('Home hero autoplays authentic local gameplay safely without scroll work',()=>{
+ assert.match(home,/autoPlay muted loop playsInline preload="metadata"/);
+ assert.match(home,/src=\{deathmatchVideo\}/);
+ assert.match(home,/IntersectionObserver/);
+ assert.match(home,/document\.addEventListener\('visibilitychange',update\)/);
+ assert.match(home,/video\.pause\(\)/);
+ assert.match(home,/prefers-reduced-motion: reduce/);
+ assert.doesNotMatch(home,/src="\/media\/operator-hero\.webp"/);
+ assert.doesNotMatch(home,/addEventListener\(['"]scroll['"]/);
+ assert.match(css,/\.hero-gameplay-video\{/);
+ assert.match(css,/object-fit:cover/);
 });
 
 test('no wallet, swap transaction or recurring scroll script in site',()=>{
