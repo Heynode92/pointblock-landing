@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import deathmatchVideo from '../assets/video/deatch_match_demo.mp4';
-import { FiArrowRight, FiArrowUpRight, FiCrosshair, FiMap, FiMonitor, FiShield, FiTarget, FiZap } from 'react-icons/fi';
+import { FiArrowRight, FiArrowUpRight, FiCrosshair, FiMap, FiMonitor, FiPause, FiPlay, FiShield, FiTarget, FiZap } from 'react-icons/fi';
 import { ContractTable, DesktopNotice, NetworkBadge, PlayButton, SectionHeading } from '../components.jsx';
 import { MODES, MAPS } from '../content.js';
 
@@ -14,6 +14,7 @@ const highlights=[
 function HeroGameplayVideo(){
  const ref=useRef(null);
  const [failed,setFailed]=useState(false);
+ const [playing,setPlaying]=useState(false);
  useEffect(()=>{
   const video=ref.current;
   if(!video)return;
@@ -51,11 +52,24 @@ function HeroGameplayVideo(){
    <video ref={ref} className="hero-gameplay-video" src={deathmatchVideo}
      autoPlay muted loop playsInline preload="metadata" disablePictureInPicture
      aria-label="PointBlock Team Deathmatch gameplay footage"
+     onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)}
      onError={()=>setFailed(true)} />
    {failed&&<div className="hero-gameplay-fallback" role="status">GAMEPLAY PREVIEW UNAVAILABLE</div>}
-   <div className="hero-gameplay-caption" aria-hidden="true">
-     <span>GAMEPLAY FOOTAGE</span><strong>TEAM DEATHMATCH</strong>
-     <span>5V5 // POINTBLOCK</span>
+   <div className="hero-gameplay-caption">
+     <button type="button" className="hero-video-control"
+       onClick={()=>{
+         const video=ref.current;
+         if(!video)return;
+         if(video.paused){void video.play().catch(()=>{});}
+         else video.pause();
+       }}
+       aria-label={playing?'Pause PointBlock gameplay video':'Play PointBlock gameplay video'}>
+       {playing?<FiPause aria-hidden="true"/>:<FiPlay aria-hidden="true"/>}
+     </button>
+     <div className="hero-video-label"><span>GAMEPLAY FOOTAGE</span><small>ACTUAL POINTBLOCK MATCH</small></div>
+     <span className="hero-video-divider" aria-hidden="true"/>
+     <strong>TEAM DEATHMATCH</strong>
+     <span className="hero-video-signature">5V5 // POINTBLOCK</span>
    </div>
  </div>;
 }
@@ -66,17 +80,25 @@ export default function Home(){
      <div className="container hero-grid">
        <div className="hero-copy">
          <NetworkBadge/>
-         <p className="eyebrow hero-kicker"><span className="accent-slice"/> THE NEXT FRONTLINE</p>
+         <p className="eyebrow hero-kicker"><span className="accent-slice"/> THE NEXT FRONTLINE <span className="hero-kicker-bars" aria-hidden="true">////</span></p>
          <h1 className="display-title">POINT<span>BLOCK</span><strong>THE BATTLE BEGINS.</strong></h1>
          <p className="hero-lead">A competitive 5v5 browser FPS. Built for players. <b>Built for Robinhood Chain.</b></p>
          <p className="hero-muted">Take your position as Police or Terrorists. Enter Team Deathmatch or Bomb Mission and fight for victory across five arenas.</p>
          <div className="hero-cta"><PlayButton/><Link className="btn btn-outline" to="/about">EXPLORE THE GAME <FiArrowRight aria-hidden="true"/></Link></div>
          <div className="hero-disclaimer"><FiMonitor aria-hidden="true"/> DESKTOP BROWSERS SUPPORTED · MOBILE GAMEPLAY IN DEVELOPMENT</div>
        </div>
-       <div className="hero-visual" aria-label="PointBlock visual composition">
-         <div className="hero-visual-head"><span><FiCrosshair aria-hidden="true"/> POINTBLOCK // FIELD OPS</span><span>RH / 4663</span></div>
-         <HeroGameplayVideo/>
-         <div className="hero-visual-bottom"><span><span className="tiny-orange"/> BROWSER FPS</span><span>BUILT FOR ROBINHOOD CHAIN</span></div>
+       <div className="hero-visual" aria-label="PointBlock live gameplay showcase">
+         <div className="hero-visual-inner">
+           <div className="hero-visual-head">
+             <span><FiCrosshair aria-hidden="true"/> POINTBLOCK // FIELD OPS</span>
+             <span className="hero-frame-track" aria-hidden="true"/>
+             <span className="hero-frame-signal" aria-hidden="true">///</span>
+             <span>RH / 4663</span>
+           </div>
+           <HeroGameplayVideo/>
+           <div className="hero-visual-bottom"><span><span className="tiny-orange"/> DESKTOP BROWSER FPS</span><span>ROBINHOOD CHAIN / 4663</span></div>
+         </div>
+         <span className="hero-frame-corner" aria-hidden="true"/>
        </div>
      </div>
      <div className="container hero-stats">
