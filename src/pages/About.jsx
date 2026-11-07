@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import { Link } from 'react-router';
 import {
-  FiArrowRight, FiArrowUpRight, FiAward, FiCheckCircle, FiCrosshair,
-  FiFlag, FiLock, FiMap, FiMonitor, FiPlay, FiShield, FiTarget, FiUsers
+  FiArrowRight, FiArrowUpRight, FiCheckCircle, FiLock, FiShield, FiTarget
 } from 'react-icons/fi';
 import { DesktopNotice, PlayButton } from '../components.jsx';
 import { MODES, MAPS, LOADOUT, NETWORK } from '../content.js';
-import bombMissionFootage from '../assets/video/bomb_mission_demo.mp4';
 
 const journey = [
   {
@@ -42,63 +39,34 @@ const principles = [
   },
 ];
 
-function AboutFootage() {
-  const [enabled, setEnabled] = useState(false);
-
-  return <div className="about-footage" aria-label="PointBlock Bomb Mission gameplay showcase">
-    <div className="about-footage-top">
-      <span><FiCrosshair aria-hidden="true" /> FIELD RECORDING / 02</span>
-      <span>BOMB MISSION</span>
-    </div>
-    <div className="about-footage-screen">
-      {enabled
-        ? <video className="about-footage-video" src={bombMissionFootage}
-            controls autoPlay muted playsInline preload="metadata"
-            aria-label="Actual PointBlock Bomb Mission game footage">
-            Your browser does not support HTML5 video.
-          </video>
-        : <>
-            <div className="about-footage-illustration" aria-hidden="true">
-              <span className="about-illustration-a">A</span>
-              <span className="about-illustration-b">B</span>
-              <FiCrosshair />
-            </div>
-            <button className="about-footage-trigger" type="button" onClick={() => setEnabled(true)}>
-              <span><FiPlay aria-hidden="true" /></span>
-              <strong>WATCH ACTUAL GAMEPLAY</strong>
-              <small>BOMB MISSION · LOADS ON CLICK</small>
-            </button>
-          </>}
-    </div>
-    <div className="about-footage-bottom">
-      <span>POLICE <i /> TERRORISTS</span>
-      <span>OBJECTIVE-BASED 5V5</span>
-    </div>
-  </div>;
-}
-
 export default function About() {
   return <div className="about-page">
-    <section className="about-hero">
-      <div className="container about-hero-layout">
-        <div className="about-hero-intro">
-          <p className="about-eyebrow"><span /> POINTBLOCK / PROJECT OVERVIEW</p>
-          <h1>MORE THAN<br />A MATCH.<br /><em>A BATTLE<br />TO MASTER.</em></h1>
-          <p className="about-hero-lead">PointBlock is a browser-based tactical first-person shooter built around 5v5 team combat, skill-driven gunplay and persistent operator progression.</p>
-          <p className="about-hero-body">Take the role of Police or Terrorists, enter two distinct game modes and fight across five battlefields. Behind every match is a connected system of player identity, equipment, competitive statistics and server-recorded results.</p>
-          <div className="about-hero-actions">
-            <PlayButton />
-            <Link to="/maps" className="btn btn-outline">EXPLORE THE MAPS <FiArrowRight aria-hidden="true" /></Link>
-          </div>
-          <div className="about-hero-platform"><FiMonitor aria-hidden="true" /> GAMEPLAY CURRENTLY DESIGNED FOR DESKTOP WEB BROWSERS</div>
+    <section className="about-hero" aria-labelledby="about-heading">
+      <div className="container about-introduction">
+        <div className="about-introduction-top">
+          <p className="about-eyebrow"><span /> ABOUT / POINTBLOCK</p>
+          <span className="about-introduction-edition">A DESKTOP TACTICAL FPS · ROBINHOOD CHAIN</span>
         </div>
-        <AboutFootage />
-      </div>
-      <div className="container about-fact-strip" aria-label="PointBlock game overview">
-        <div><strong>5<span>V</span>5</strong><small>TEAM-BASED COMBAT</small></div>
-        <div><strong>02</strong><small>GAME MODES</small></div>
-        <div><strong>05</strong><small>TACTICAL MAPS</small></div>
-        <div><strong>19</strong><small>WEAPON PROFILES</small></div>
+        <h1 id="about-heading">ABOUT <em>POINTBLOCK.</em></h1>
+        <div className="about-introduction-line" aria-hidden="true" />
+        <div className="about-introduction-content">
+          <div className="about-introduction-lead">
+            <span>THE GAME</span>
+            <p>A competitive 5v5 first-person shooter built around tactical combat, player skill and meaningful progression.</p>
+          </div>
+          <div className="about-introduction-details">
+            <span>THE VISION</span>
+            <p>PointBlock brings team-based FPS gameplay to desktop web browsers. Players fight as Police or Terrorists, choose between elimination and objective-based modes, and progress through their own operator identity.</p>
+            <p>Built with Three.js and an independent game backend, the project focuses on responsive combat, fair match decisions and lasting player progression. Robinhood Chain provides the wallet identity and future ecosystem foundation—not a substitute for gameplay.</p>
+          </div>
+        </div>
+        <div className="about-introduction-facts" aria-label="PointBlock game overview">
+          <div><strong>5V5</strong><span>TEAM COMBAT</span></div>
+          <div><strong>02</strong><span>GAME MODES</span></div>
+          <div><strong>05</strong><span>BATTLE MAPS</span></div>
+          <div><strong>19</strong><span>WEAPON PROFILES</span></div>
+          <div><strong>WEB</strong><span>DESKTOP FIRST</span></div>
+        </div>
       </div>
     </section>
 
