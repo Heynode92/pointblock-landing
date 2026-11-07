@@ -135,3 +135,31 @@ test('no wallet, swap transaction or recurring scroll script in site',()=>{
  assert.doesNotMatch(files,/innerHTML\s*=/);
  assert.equal((css.match(/\{/g)||[]).length,(css.match(/\}/g)||[]).length);
 });
+
+test('reference-inspired cinematic hero is real React/CSS, not a baked UI image',()=>{
+ const homeCss=read('src/styles/home-cinematic.css');
+ const background=read('public/media/pointblock-battlefield.svg');
+ assert.match(home,/className="hero-visual-inner"/);
+ assert.match(home,/className="hero-frame-corner"/);
+ assert.match(home,/className="hero-visual-head"/);
+ assert.match(home,/className="hero-gameplay-caption"/);
+ assert.match(home,/hero-video-control/);
+ assert.match(home,/onPlay=\{\(\)=>setPlaying\(true\)\}/);
+ assert.match(home,/onPause=\{\(\)=>setPlaying\(false\)\}/);
+ assert.match(home,/onClick=\{\(\)=>\{/);
+ assert.match(home,/autoPlay muted loop playsInline preload="metadata"/);
+ assert.match(homeCss,/pointblock-battlefield\.svg/);
+ assert.match(homeCss,/\.home-hero \.hero-visual-inner\{/);
+ assert.match(homeCss,/\.home-hero \.hero-cta \.btn-primary\{/);
+ assert.match(homeCss,/clip-path:polygon\(/);
+ assert.match(homeCss,/\.home-hero \.hero-gameplay-caption\{/);
+ assert.match(homeCss,/@media\(max-width:980px\)/);
+ assert.match(homeCss,/@media\(max-width:700px\)/);
+ assert.match(homeCss,/@media\(prefers-reduced-motion:reduce\)/);
+ assert.match(background,/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
+ assert.match(background,/industrial fortress/);
+ assert.doesNotMatch(background,/<script|<image|foreignObject/i);
+ assert.doesNotMatch(home,/src="\/media\/pointblock-battlefield\.svg"/);
+ assert.match(read('src/main.jsx'),/import '\.\/styles\/home-cinematic\.css';/);
+ assert.equal((homeCss.match(/\{/g)||[]).length,(homeCss.match(/\}/g)||[]).length);
+});
