@@ -3,7 +3,8 @@ import { Link } from 'react-router';
 import deathmatchVideo from '../assets/video/deatch_match_demo.mp4';
 import { FiArrowRight, FiArrowUpRight, FiCrosshair, FiMap, FiMonitor, FiPause, FiPlay, FiShield, FiTarget, FiZap } from 'react-icons/fi';
 import { ContractTable, DesktopNotice, PlayButton, SectionHeading } from '../components.jsx';
-import { MODES, MAPS } from '../content.js';
+import { MODES, MAPS, MAP_GROUPS } from '../content.js';
+import { ArenaVideo, ArenaGroupHeading } from '../components/ArenaShowcase.jsx';
 
 const highlights=[
  {number:'05',label:'BATTLE MAPS',sub:'URBAN + INDOOR',Icon:FiMap},
@@ -123,14 +124,25 @@ export default function Home(){
    <section className="section section-slate">
      <div className="container">
        <div className="section-head-row"><SectionHeading eyebrow="02 / THE WORLD" title="FIVE ARENAS." accent="ONE FRONTLINE." subtitle="Purpose-built arenas spanning urban environments, indoor facilities and close-quarters sites."/><Link className="inline-link" to="/maps">EXPLORE ALL MAPS <FiArrowUpRight/></Link></div>
-       <div className="map-strip">{MAPS.map(m=><Link to="/maps" className={'mini-map '+m.theme} key={m.id}>
-         <div className="mini-map-art map-preview">
-           <video className="map-preview-video" src={m.video} autoPlay muted loop playsInline
-             preload="metadata" disablePictureInPicture disableRemotePlayback aria-hidden="true" tabIndex={-1}/>
-           <span className="map-preview-number" aria-hidden="true">{m.number}</span>
-           <span className="map-preview-status" aria-hidden="true">ARENA FEED</span>
-         </div>
-         <small>{m.category}</small><strong>{m.name}</strong><span>{m.type}</span><FiArrowUpRight className="mini-map-arrow"/></Link>)}</div>
+       <div className="arena-showcase">
+         {MAP_GROUPS.map(group=>{
+           const arenas=MAPS.filter(map=>map.category===group.category);
+           return <section className={'arena-group arena-group-'+group.id} key={group.id}
+             aria-labelledby={'home-'+group.id}>
+             <ArenaGroupHeading group={group} count={arenas.length} headingId={'home-'+group.id}/>
+             <div className={'map-strip map-strip-'+group.id}>
+               {arenas.map(map=><Link to="/maps" className="mini-map" key={map.id}>
+                 <div className="mini-map-art map-preview"><ArenaVideo map={map}/></div>
+                 <div className="mini-map-info">
+                   <div className="mini-map-meta"><span>MAP / {map.number}</span><span>{map.terrain}</span></div>
+                   <div className="mini-map-main"><strong>{map.name}</strong><FiArrowUpRight aria-hidden="true"/></div>
+                   <p>{map.type}</p>
+                 </div>
+               </Link>)}
+             </div>
+           </section>;
+         })}
+       </div>
      </div>
    </section>
 

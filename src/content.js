@@ -26,6 +26,14 @@ export const MODES = Object.freeze([
   }
 ]);
 
+// DT = Deathmatch, DM = Bomb Mission. Group identity is shared across pages.
+export const MAP_GROUPS = Object.freeze([
+  { id: 'deathmatch', code: 'DT', category: 'DEATHMATCH', title: 'TEAM DEATHMATCH',
+    description: 'Two battlegrounds for fast-paced team combat and relentless firefights.' },
+  { id: 'bomb', code: 'DM', category: 'BOMB MISSION', title: 'BOMB MISSION',
+    description: 'Three tactical arenas for coordinated attacks, bomb plants and defuses.' }
+]);
+
 export const MAPS = Object.freeze([
   { id: 'district', name: 'BLOCK DISTRICT', category: 'DEATHMATCH', type: 'Outdoor Urban Combat', terrain: 'URBAN', theme: 'orange', number: '01', video: new URL('./assets/map/dt-blockdistric.mp4', import.meta.url).href },
   { id: 'labs', name: 'BLOCK LABS', category: 'DEATHMATCH', type: 'Indoor Research Facility', terrain: 'FACILITY', theme: 'cyan', number: '02', video: new URL('./assets/map/dt-blocklabs.mp4', import.meta.url).href },

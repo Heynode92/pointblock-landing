@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, statSync } from 'node:fs';
-import { NETWORK, MODES, MAPS, NAV, validLaunchUrl, validContract, safeCommunityUrl } from '../src/content.js';
+import { NETWORK, MODES, MAPS, MAP_GROUPS, NAV, validLaunchUrl, validContract, safeCommunityUrl } from '../src/content.js';
 
 const read=(path)=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
 const app=read('src/App.jsx');
@@ -87,14 +87,25 @@ test('PLAY NOW exists but is desktop-only and safe without a real public deploym
  assert.match(earn,/DesktopNotice/);
 });
 
-test('five sourced arenas with functional filtering',()=>{
+test('DT and DM maps remain separated while filtering stays functional',()=>{
  assert.deepEqual(MODES.map(x=>x.id),['deathmatch','bomb']);
  assert.equal(MAPS.length,5);
+ assert.deepEqual(MAP_GROUPS.map(group=>group.code),['DT','DM']);
+ assert.deepEqual(MAP_GROUPS.map(group=>group.category),['DEATHMATCH','BOMB MISSION']);
  assert.equal(MAPS.filter(x=>x.category==='DEATHMATCH').length,2);
  assert.equal(MAPS.filter(x=>x.category==='BOMB MISSION').length,3);
+ const groups=MAP_GROUPS.map(group=>MAPS.filter(map=>map.category===group.category));
+ assert.deepEqual(groups.map(g=>g.map(m=>m.id)),[
+  ['district','labs'],['lockdown','town','hospital']
+ ]);
+ assert.ok(groups[0].every(m=>new URL(m.video).pathname.split('/').at(-1).startsWith('dt-')));
+ assert.ok(groups[1].every(m=>new URL(m.video).pathname.split('/').at(-1).startsWith('dm-')));
  assert.match(maps,/useMemo/);
  assert.match(maps,/aria-pressed=\{filter===x\.id\}/);
- assert.match(maps,/visible\.map/);
+ assert.ok(maps.includes('MAP_GROUPS.filter('));
+ assert.ok(maps.includes('groupMaps.map('));
+ assert.ok(home.includes('MAP_GROUPS.map('));
+ assert.ok(home.includes('MAPS.filter(map=>map.category===group.category)'));
 });
 
 test('mobile drawer slides right-to-left and closes on route, Escape, or outside click',()=>{
@@ -245,8 +256,9 @@ test('all rendered react-icons/fi symbols are explicitly imported',()=>{
  }
 });
 
-test('five locally bundled arena videos run silent loops without controls',()=>{
+test('arena videos are silent, looped, control-free, and unobscured',()=>{
  const source=read('src/content.js');
+ const media=read('src/components/ArenaShowcase.jsx');
  const previewCss=read('src/styles/map-previews.css');
  const videoNames=[
   'dt-blockdistric.mp4','dt-blocklabs.mp4',
@@ -257,24 +269,29 @@ test('five locally bundled arena videos run silent loops without controls',()=>{
  for(const name of videoNames){
   assert.ok(source.includes("new URL('./assets/map/"+name+"', import.meta.url).href"));
  }
+ const tag=media.split('<video className="map-preview-video"')[1]?.split('/>')[0]??'';
+ assert.ok(tag,'Missing native arena video');
+ assert.ok(tag.includes('autoPlay muted loop playsInline'));
+ assert.ok(tag.includes('disablePictureInPicture disableRemotePlayback'));
+ assert.ok(!tag.includes(' controls'));
+ assert.ok(!tag.includes('onPause'));
+ assert.ok(!tag.includes('onClick'));
  for(const page of [home,maps]){
-  const tag=page.split('<video className="map-preview-video"')[1]?.split('/>')[0]??'';
-  assert.ok(tag,'Missing arena video');
-  assert.ok(tag.includes('autoPlay muted loop playsInline'));
-  assert.ok(tag.includes('disablePictureInPicture disableRemotePlayback'));
-  assert.ok(!tag.includes(' controls'));
-  assert.ok(!tag.includes('onPause'));
-  assert.ok(!tag.includes('onClick'));
+  assert.ok(page.includes('<ArenaVideo map={map}/>'));
+  assert.ok(page.includes('<ArenaGroupHeading group={group}'));
+  assert.ok(!page.includes('ARENA FEED'));
+  assert.ok(!page.includes('map-preview-status'));
+  assert.ok(!page.includes('map-preview-number'));
   assert.ok(!page.includes('src={m.preview}'));
   assert.ok(!page.includes('src={map.preview}'));
  }
- assert.ok(home.includes('src={m.video}'));
- assert.ok(maps.includes('src={map.video}'));
- assert.ok(home.includes('MAPS.map('));
- assert.ok(!home.includes('MAPS.slice('));
  assert.ok(!maps.includes('arena-structure'));
  assert.ok(!maps.includes('arena-target'));
- assert.ok(!previewCss.includes('map-preview>img'));
+ assert.ok(previewCss.includes('.map-strip.map-strip-deathmatch'));
+ assert.ok(previewCss.includes('.map-strip.map-strip-bomb'));
+ assert.ok(previewCss.includes('.arena-grid-layout.arena-grid-deathmatch'));
+ assert.ok(previewCss.includes('.arena-grid-layout.arena-grid-bomb'));
+ assert.ok(!previewCss.includes('map-preview-status'));
  assert.ok(previewCss.includes('object-fit:cover'));
  assert.ok(previewCss.includes('@media(max-width:700px)'));
  assert.ok(read('src/main.jsx').includes('map-previews.css'));

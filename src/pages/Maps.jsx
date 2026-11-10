@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router';
 import { FiArrowRight, FiCrosshair, FiMap, FiMapPin, FiShield, FiTarget } from 'react-icons/fi';
-import { MAPS } from '../content.js';
+import { MAPS, MAP_GROUPS } from '../content.js';
+import { ArenaVideo, ArenaGroupHeading } from '../components/ArenaShowcase.jsx';
 import { PageHeading, PlayButton, SectionHeading } from '../components.jsx';
 
 const filters=[
@@ -11,18 +12,12 @@ const filters=[
 ];
 
 function MapCard({map}){
- return <article className={'arena-card arena-'+map.theme}>
-   <div className="arena-visual map-preview">
-    <video className="map-preview-video" src={map.video} autoPlay muted loop playsInline
-      preload="metadata" disablePictureInPicture disableRemotePlayback aria-hidden="true" tabIndex={-1}/>
-    <span className="map-preview-status" aria-hidden="true">ARENA FEED</span>
-    <span className="arena-index" aria-hidden="true">{map.number}</span>
-    <span className="arena-class">{map.terrain}</span>
-   </div>
-   <div className="arena-info"><div className="arena-badge">
-     {map.category==='DEATHMATCH'?<FiCrosshair/>:<FiShield/>}{map.category}</div>
-    <h3>{map.name}</h3><p>{map.type}</p>
-    <div className="arena-footer"><span>POINTBLOCK / MAP {map.number}</span><FiMapPin aria-hidden="true"/></div>
+ return <article className="arena-card">
+   <div className="arena-visual map-preview"><ArenaVideo map={map}/></div>
+   <div className="arena-info">
+     <div className="arena-details-meta"><span>MAP / {map.number}</span><span>{map.terrain}</span></div>
+     <h3>{map.name}</h3><p>{map.type}</p>
+     <div className="arena-footer"><span>{map.category} / POINTBLOCK</span><FiMapPin aria-hidden="true"/></div>
    </div>
  </article>;
 }
@@ -44,7 +39,18 @@ export default function Maps(){
      className={filter===x.id?'map-filter selected':'map-filter'}
      onClick={()=>setFilter(x.id)}>{x.label}<span>{x.id==='ALL'?5:MAPS.filter(m=>m.category===x.id).length}</span></button>)}
   </div>
-  <div className="arena-grid-layout" aria-live="polite">{visible.map(m=><MapCard key={m.id} map={m}/>)}</div>
+  <div className="map-mode-collections" aria-live="polite">
+   {MAP_GROUPS.filter(group=>filter==='ALL'||group.category===filter).map(group=>{
+     const groupMaps=visible.filter(map=>map.category===group.category);
+     return <section className={'arena-group arena-group-'+group.id} key={group.id}
+       aria-labelledby={'maps-'+group.id}>
+       <ArenaGroupHeading group={group} count={groupMaps.length} headingId={'maps-'+group.id}/>
+       <div className={'arena-grid-layout arena-grid-'+group.id}>
+         {groupMaps.map(map=><MapCard key={map.id} map={map}/>)}
+       </div>
+     </section>;
+   })}
+  </div>
   <div className="map-information"><FiMap/><p>The selection shown here follows the PointBlock game map registry. Live room and map availability is determined in-game.</p></div>
  </div></section>
  <section className="section section-night"><div className="container">
