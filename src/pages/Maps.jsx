@@ -13,7 +13,9 @@ const filters=[
 function MapCard({map}){
  return <article className={'arena-card arena-'+map.theme}>
    <div className="arena-visual map-preview">
-    <img src={map.preview} alt={map.name+' arena preview'} loading="lazy" decoding="async" width="600" height="150"/>
+    <video className="map-preview-video" src={map.video} autoPlay muted loop playsInline
+      preload="metadata" disablePictureInPicture disableRemotePlayback aria-hidden="true" tabIndex={-1}/>
+    <span className="map-preview-status" aria-hidden="true">ARENA FEED</span>
     <span className="arena-index" aria-hidden="true">{map.number}</span>
     <span className="arena-class">{map.terrain}</span>
    </div>
@@ -36,7 +38,7 @@ export default function Maps(){
   <div className="map-hero-graphic"><div className="map-hero-radar"><FiTarget/></div><strong>05<span> MAPS</span></strong><small>02 DEATHMATCH · 03 BOMB MISSION</small></div>
  </section>
  <section className="section section-slate"><div className="container">
-  <SectionHeading eyebrow="01 / GAME ARENAS" title="CHOOSE YOUR" accent="TERRAIN." subtitle="Filter by game mode and explore screenshots of the five PointBlock arenas."/>
+  <SectionHeading eyebrow="01 / GAME ARENAS" title="CHOOSE YOUR" accent="TERRAIN." subtitle="Explore every PointBlock arena in motion. Choose a mode and scout the terrain before your next match."/>
   <div className="map-filters" role="group" aria-label="Filter maps">
    {filters.map(x=><button key={x.id} type="button" aria-pressed={filter===x.id}
      className={filter===x.id?'map-filter selected':'map-filter'}

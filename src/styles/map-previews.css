@@ -1,8 +1,94 @@
-/* Actual PointBlock map captures. The mode, names and preview paths are sourced from MAPS. */
-.map-preview{isolation:isolate}
-.map-preview>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .25s ease}
-.mini-map:hover .map-preview>img{transform:scale(1.035)}
+/* PointBlock arena video showcase — native silent autoplay, no transport controls. */
+.map-strip{grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.map-strip>.mini-map{grid-column:span 2;min-width:0}
+.map-strip>.mini-map:nth-child(n+4){grid-column:span 3}
+.mini-map,.arena-card{--arena-accent:#f9a14a}
+.mini-map.cyan,.arena-card.arena-cyan{--arena-accent:#74c7ef}
+.mini-map.blue,.arena-card.arena-blue{--arena-accent:#85a9ff}
+.mini-map.mint,.arena-card.arena-mint{--arena-accent:#83eac7}
+.map-strip>.mini-map,.arena-grid-layout>.arena-card{
+ border:1px solid #41647d;
+ background:linear-gradient(155deg,#102e45,#071726);
+ box-shadow:0 18px 34px rgba(0,7,15,.2);
+ transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease;
+}
+.map-strip>.mini-map:hover,.arena-grid-layout>.arena-card:hover{
+ border-color:var(--arena-accent);
+ box-shadow:0 18px 45px rgba(0,6,14,.45),inset 0 1px 0 rgba(255,255,255,.045);
+}
+.map-strip>.mini-map{border-top:2px solid var(--arena-accent);min-height:0;padding-bottom:20px}
+.map-strip>.mini-map>small{
+ margin:18px 20px 4px;
+ color:var(--arena-accent);
+ font-size:11px;
+ font-weight:900;
+ letter-spacing:.16em
+}
+.map-strip>.mini-map>strong{
+ margin-inline:20px;
+ font-size:clamp(27px,2.4vw,35px);
+ letter-spacing:.025em;
+ line-height:1.05
+}
+.map-strip>.mini-map>span{margin:6px 20px 0;font-size:16px}
+.map-strip>.mini-map>.mini-map-arrow{margin:-24px 20px 0;color:var(--arena-accent)}
+.mini-map-art.map-preview{height:auto;aspect-ratio:16/9;background:#061321}
+.arena-visual.map-preview{height:auto;aspect-ratio:16/9;background:#061321}
+.map-preview{position:relative;overflow:hidden;isolation:isolate}
+.map-preview>.map-preview-video{
+ position:absolute;inset:0;display:block;width:100%;height:100%;
+ object-fit:cover;object-position:center;
+ pointer-events:none;user-select:none;
+}
 .mini-map-art.map-preview::before{display:none}
-.map-preview::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,transparent 50%,rgba(4,13,22,.45))}
-.mini-map-art.map-preview>span,.arena-visual.map-preview>.arena-index,.arena-visual.map-preview>.arena-class{z-index:1}
-@media(prefers-reduced-motion:reduce){.map-preview>img{transition:none}.mini-map:hover .map-preview>img{transform:none}}
+.map-preview::after{
+ content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+ background:linear-gradient(180deg,rgba(4,13,22,.25) 0%,transparent 38%,rgba(4,13,22,.42) 100%);
+ box-shadow:inset 0 0 0 1px rgba(190,224,246,.05);
+}
+.map-preview>.map-preview-number,.arena-visual.map-preview>.arena-index{
+ position:absolute;z-index:2;top:12px;left:18px;
+ font:italic 900 clamp(47px,5.5vw,68px)/1 Impact,"Arial Black",sans-serif;
+ color:rgba(255,255,255,.22);
+ letter-spacing:-.02em;
+ text-shadow:0 3px 14px rgba(0,0,0,.3)
+}
+.map-preview>.map-preview-status{
+ position:absolute;z-index:2;top:16px;right:16px;left:auto;
+ display:inline-flex;align-items:center;gap:7px;
+ padding:6px 9px;border:1px solid rgba(192,224,244,.28);
+ background:rgba(5,17,30,.72);backdrop-filter:blur(6px);
+ font:800 10px/1.2 Rajdhani,Arial,sans-serif;
+ letter-spacing:.14em;color:#e9f4fc;white-space:nowrap
+}
+.map-preview>.map-preview-status::before{
+ content:"";display:block;width:5px;height:5px;flex:none;
+ border-radius:50%;background:var(--arena-accent);
+ box-shadow:0 0 8px var(--arena-accent)
+}
+.arena-visual.map-preview>.arena-class{
+ z-index:2;right:16px;bottom:14px;
+ padding:6px 10px;
+ background:var(--arena-accent);
+ color:#071726
+}
+.arena-grid-layout>.arena-card{border-top:2px solid var(--arena-accent)}
+.arena-grid-layout>.arena-card>.arena-info{padding:22px 23px 24px}
+.arena-grid-layout>.arena-card .arena-badge{color:var(--arena-accent)}
+.arena-grid-layout>.arena-card .arena-footer svg{color:var(--arena-accent)}
+@media(max-width:980px){
+ .map-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .map-strip>.mini-map,.map-strip>.mini-map:nth-child(n+4){grid-column:auto}
+ .map-strip>.mini-map:last-child{grid-column:1/-1;width:min(100%,550px);justify-self:center}
+}
+@media(max-width:700px){
+ .map-strip{grid-template-columns:1fr;gap:17px}
+ .map-strip>.mini-map,.map-strip>.mini-map:nth-child(n+4),.map-strip>.mini-map:last-child{
+  grid-column:auto;width:100%;max-width:none
+ }
+ .mini-map-art.map-preview,.arena-visual.map-preview{height:auto;aspect-ratio:16/9}
+ .map-preview>.map-preview-number,.arena-visual.map-preview>.arena-index{font-size:56px}
+}
+@media(prefers-reduced-motion:reduce){
+ .map-strip>.mini-map,.arena-grid-layout>.arena-card{transition:none}
+}

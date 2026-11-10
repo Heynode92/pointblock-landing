@@ -27,11 +27,11 @@ export const MODES = Object.freeze([
 ]);
 
 export const MAPS = Object.freeze([
-  { id: 'district', name: 'BLOCK DISTRICT', category: 'DEATHMATCH', type: 'Outdoor Urban Combat', terrain: 'URBAN', theme: 'orange', number: '01', preview: '/media/maps/block-district.webp' },
-  { id: 'labs', name: 'BLOCK LABS', category: 'DEATHMATCH', type: 'Indoor Research Facility', terrain: 'FACILITY', theme: 'cyan', number: '02', preview: '/media/maps/block-labs.webp' },
-  { id: 'lockdown', name: 'LOCKDOWN', category: 'BOMB MISSION', type: 'Indoor Tactical Arena', terrain: 'INDOOR', theme: 'blue', number: '03', preview: '/media/maps/lockdown.webp' },
-  { id: 'town', name: 'BLOCK TOWN', category: 'BOMB MISSION', type: 'Outdoor Urban Town', terrain: 'URBAN', theme: 'orange', number: '04', preview: '/media/maps/block-town.webp' },
-  { id: 'hospital', name: 'HOSPITAL', category: 'BOMB MISSION', type: 'Indoor Medical Center', terrain: 'INDOOR', theme: 'mint', number: '05', preview: '/media/maps/hospital.webp' }
+  { id: 'district', name: 'BLOCK DISTRICT', category: 'DEATHMATCH', type: 'Outdoor Urban Combat', terrain: 'URBAN', theme: 'orange', number: '01', video: new URL('./assets/map/dt-blockdistric.mp4', import.meta.url).href },
+  { id: 'labs', name: 'BLOCK LABS', category: 'DEATHMATCH', type: 'Indoor Research Facility', terrain: 'FACILITY', theme: 'cyan', number: '02', video: new URL('./assets/map/dt-blocklabs.mp4', import.meta.url).href },
+  { id: 'lockdown', name: 'LOCKDOWN', category: 'BOMB MISSION', type: 'Indoor Tactical Arena', terrain: 'INDOOR', theme: 'blue', number: '03', video: new URL('./assets/map/dm-lockdown.mp4', import.meta.url).href },
+  { id: 'town', name: 'BLOCK TOWN', category: 'BOMB MISSION', type: 'Outdoor Urban Town', terrain: 'URBAN', theme: 'orange', number: '04', video: new URL('./assets/map/dm-blocktown.mp4', import.meta.url).href },
+  { id: 'hospital', name: 'HOSPITAL', category: 'BOMB MISSION', type: 'Indoor Medical Center', terrain: 'INDOOR', theme: 'mint', number: '05', video: new URL('./assets/map/dm-hospital.mp4', import.meta.url).href }
 ]);
 
 export const LOADOUT = Object.freeze([

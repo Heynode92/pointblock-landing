@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, statSync } from 'node:fs';
 import { NETWORK, MODES, MAPS, NAV, validLaunchUrl, validContract, safeCommunityUrl } from '../src/content.js';
 
 const read=(path)=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
@@ -245,17 +245,37 @@ test('all rendered react-icons/fi symbols are explicitly imported',()=>{
  }
 });
 
-test('real local screenshots replace decorative arena placeholders',()=>{
+test('five locally bundled arena videos run silent loops without controls',()=>{
+ const source=read('src/content.js');
  const previewCss=read('src/styles/map-previews.css');
- assert.deepEqual(MAPS.map(m=>m.preview),[
-  '/media/maps/block-district.webp','/media/maps/block-labs.webp',
-  '/media/maps/lockdown.webp','/media/maps/block-town.webp','/media/maps/hospital.webp'
- ]);
- assert.ok(home.includes('src={m.preview}'));
- assert.ok(maps.includes('src={map.preview}'));
- assert.match(home,/loading="lazy" decoding="async"/);
- assert.match(maps,/loading="lazy" decoding="async"/);
- assert.doesNotMatch(maps,/arena-structure|arena-target/);
+ const videoNames=[
+  'dt-blockdistric.mp4','dt-blocklabs.mp4',
+  'dm-lockdown.mp4','dm-blocktown.mp4','dm-hospital.mp4'
+ ];
+ assert.deepEqual(MAPS.map(m=>new URL(m.video).pathname.split('/').at(-1)),videoNames);
+ for(const m of MAPS)assert.ok(statSync(new URL(m.video)).size>0,'Missing map video: '+m.id);
+ for(const name of videoNames){
+  assert.ok(source.includes("new URL('./assets/map/"+name+"', import.meta.url).href"));
+ }
+ for(const page of [home,maps]){
+  const tag=page.split('<video className="map-preview-video"')[1]?.split('/>')[0]??'';
+  assert.ok(tag,'Missing arena video');
+  assert.ok(tag.includes('autoPlay muted loop playsInline'));
+  assert.ok(tag.includes('disablePictureInPicture disableRemotePlayback'));
+  assert.ok(!tag.includes(' controls'));
+  assert.ok(!tag.includes('onPause'));
+  assert.ok(!tag.includes('onClick'));
+  assert.ok(!page.includes('src={m.preview}'));
+  assert.ok(!page.includes('src={map.preview}'));
+ }
+ assert.ok(home.includes('src={m.video}'));
+ assert.ok(maps.includes('src={map.video}'));
+ assert.ok(home.includes('MAPS.map('));
+ assert.ok(!home.includes('MAPS.slice('));
+ assert.ok(!maps.includes('arena-structure'));
+ assert.ok(!maps.includes('arena-target'));
+ assert.ok(!previewCss.includes('map-preview>img'));
+ assert.ok(previewCss.includes('object-fit:cover'));
+ assert.ok(previewCss.includes('@media(max-width:700px)'));
  assert.ok(read('src/main.jsx').includes('map-previews.css'));
- assert.match(previewCss,/object-fit:cover/);
 });

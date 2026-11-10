@@ -123,8 +123,13 @@ export default function Home(){
    <section className="section section-slate">
      <div className="container">
        <div className="section-head-row"><SectionHeading eyebrow="02 / THE WORLD" title="FIVE ARENAS." accent="ONE FRONTLINE." subtitle="Purpose-built arenas spanning urban environments, indoor facilities and close-quarters sites."/><Link className="inline-link" to="/maps">EXPLORE ALL MAPS <FiArrowUpRight/></Link></div>
-       <div className="map-strip">{MAPS.slice(0,3).map(m=><Link to="/maps" className={'mini-map '+m.theme} key={m.id}>
-         <div className="mini-map-art map-preview"><img src={m.preview} alt="" loading="lazy" decoding="async" width="600" height="150"/><span aria-hidden="true">{m.number}</span></div>
+       <div className="map-strip">{MAPS.map(m=><Link to="/maps" className={'mini-map '+m.theme} key={m.id}>
+         <div className="mini-map-art map-preview">
+           <video className="map-preview-video" src={m.video} autoPlay muted loop playsInline
+             preload="metadata" disablePictureInPicture disableRemotePlayback aria-hidden="true" tabIndex={-1}/>
+           <span className="map-preview-number" aria-hidden="true">{m.number}</span>
+           <span className="map-preview-status" aria-hidden="true">ARENA FEED</span>
+         </div>
          <small>{m.category}</small><strong>{m.name}</strong><span>{m.type}</span><FiArrowUpRight className="mini-map-arrow"/></Link>)}</div>
      </div>
    </section>
