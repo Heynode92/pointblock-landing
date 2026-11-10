@@ -244,3 +244,18 @@ test('all rendered react-icons/fi symbols are explicitly imported',()=>{
   }
  }
 });
+
+test('real local screenshots replace decorative arena placeholders',()=>{
+ const previewCss=read('src/styles/map-previews.css');
+ assert.deepEqual(MAPS.map(m=>m.preview),[
+  '/media/maps/block-district.webp','/media/maps/block-labs.webp',
+  '/media/maps/lockdown.webp','/media/maps/block-town.webp','/media/maps/hospital.webp'
+ ]);
+ assert.ok(home.includes('src={m.preview}'));
+ assert.ok(maps.includes('src={map.preview}'));
+ assert.match(home,/loading="lazy" decoding="async"/);
+ assert.match(maps,/loading="lazy" decoding="async"/);
+ assert.doesNotMatch(maps,/arena-structure|arena-target/);
+ assert.ok(read('src/main.jsx').includes('map-previews.css'));
+ assert.match(previewCss,/object-fit:cover/);
+});

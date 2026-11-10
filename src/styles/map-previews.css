@@ -1,0 +1,8 @@
+/* Actual PointBlock map captures. The mode, names and preview paths are sourced from MAPS. */
+.map-preview{isolation:isolate}
+.map-preview>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .25s ease}
+.mini-map:hover .map-preview>img{transform:scale(1.035)}
+.mini-map-art.map-preview::before{display:none}
+.map-preview::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,transparent 50%,rgba(4,13,22,.45))}
+.mini-map-art.map-preview>span,.arena-visual.map-preview>.arena-index,.arena-visual.map-preview>.arena-class{z-index:1}
+@media(prefers-reduced-motion:reduce){.map-preview>img{transition:none}.mini-map:hover .map-preview>img{transform:none}}

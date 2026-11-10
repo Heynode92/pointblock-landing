@@ -4,6 +4,7 @@ import App from './App.jsx';
 import './style.css';
 import './styles/home-cinematic.css';
 import './styles/about-editorial.css';
+import './styles/map-previews.css';
 
 const root=document.getElementById('root');
 if(!root)throw new Error('APP_ROOT_MISSING');

@@ -124,7 +124,7 @@ export default function Home(){
      <div className="container">
        <div className="section-head-row"><SectionHeading eyebrow="02 / THE WORLD" title="FIVE ARENAS." accent="ONE FRONTLINE." subtitle="Purpose-built arenas spanning urban environments, indoor facilities and close-quarters sites."/><Link className="inline-link" to="/maps">EXPLORE ALL MAPS <FiArrowUpRight/></Link></div>
        <div className="map-strip">{MAPS.slice(0,3).map(m=><Link to="/maps" className={'mini-map '+m.theme} key={m.id}>
-         <div className="mini-map-art"><span>{m.number}</span><FiMap aria-hidden="true"/></div>
+         <div className="mini-map-art map-preview"><img src={m.preview} alt="" loading="lazy" decoding="async" width="600" height="150"/><span aria-hidden="true">{m.number}</span></div>
          <small>{m.category}</small><strong>{m.name}</strong><span>{m.type}</span><FiArrowUpRight className="mini-map-arrow"/></Link>)}</div>
      </div>
    </section>
