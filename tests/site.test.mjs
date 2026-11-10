@@ -296,3 +296,32 @@ test('arena videos are silent, looped, control-free, and unobscured',()=>{
  assert.ok(previewCss.includes('@media(max-width:700px)'));
  assert.ok(read('src/main.jsx').includes('map-previews.css'));
 });
+
+test('user-provided Robinhood and PBT logos replace generic chain and token marks',()=>{
+ const branding=read('src/styles/identity-icons.css');
+ const main=read('src/main.jsx');
+ const about=read('src/pages/About.jsx');
+ const shared=read('src/components.jsx');
+ const robinhood=new URL('../src/assets/robinhood-logo.webp',import.meta.url);
+ const pbt=new URL('../src/assets/pbt-logo.webp',import.meta.url);
+ assert.ok(statSync(robinhood).size>0);
+ assert.ok(statSync(pbt).size>0);
+ assert.ok(shared.includes("import robinhoodLogo from './assets/robinhood-logo.webp'"));
+ assert.ok(shared.includes("import pbtLogo from './assets/pbt-logo.webp'"));
+ assert.ok(shared.includes('className="network-badge-logo" src={robinhoodLogo}'));
+ assert.ok(shared.includes('className="token-table-identity"'));
+ assert.ok(shared.includes('className="token-table-network"'));
+ assert.ok(home.includes('className="chain-feature-logo" src={robinhoodLogo}'));
+ assert.ok(home.includes('className="contract-heading-with-logo"'));
+ assert.ok(about.includes('className="about-robinhood-logo" src={robinhoodLogo}'));
+ assert.ok(about.includes('className="about-pbt-title"'));
+ assert.ok(token.includes('className="token-pbt-emblem" src={pbtLogo}'));
+ assert.ok(token.includes('className="token-pbt-tile-logo" src={pbtLogo}'));
+ assert.ok(token.includes('className="token-network-value"'));
+ assert.ok(!token.includes('className="token-coin-large"'));
+ assert.ok(!token.includes('className="simple-token-coin"'));
+ assert.ok(branding.includes('.network-badge-logo'));
+ assert.ok(branding.includes('.token-hero-art .token-pbt-emblem'));
+ assert.ok(main.includes("import './styles/identity-icons.css'"));
+ assert.ok(shared.includes('Not affiliated with or endorsed by Robinhood Markets'));
+});

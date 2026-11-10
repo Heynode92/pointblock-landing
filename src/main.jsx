@@ -5,6 +5,7 @@ import './style.css';
 import './styles/home-cinematic.css';
 import './styles/about-editorial.css';
 import './styles/map-previews.css';
+import './styles/identity-icons.css';
 
 const root=document.getElementById('root');
 if(!root)throw new Error('APP_ROOT_MISSING');

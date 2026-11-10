@@ -3,6 +3,8 @@ import { FiAlertCircle, FiArrowRight, FiCheckCircle, FiInfo, FiLock, FiShield, F
 import { CommunityLinks, ContractTable, NetworkBadge, PageHeading, SectionHeading, SecurityNote } from '../components.jsx';
 import { NETWORK } from '../content.js';
 import vpbtLogo from '../assets/vpbt-logo.png';
+import robinhoodLogo from '../assets/robinhood-logo.webp';
+import pbtLogo from '../assets/pbt-logo.webp';
 
 export default function Tokenomics(){
  return <>
@@ -10,7 +12,7 @@ export default function Tokenomics(){
   <div><PageHeading index="02" kicker="ECOSYSTEM / TOKEN INFORMATION" title="PBT" accent="TOKENOMICS."
      description="A transparent overview of PointBlock's in-game currency and planned PBT utility on Robinhood Chain. Official token parameters are not yet announced."/>
     <NetworkBadge/></div>
-  <div className="token-hero-art"><div className="token-coin-large">P<span>B</span>T</div><span>POINTBLOCK // NETWORK 4663</span></div>
+  <div className="token-hero-art"><img className="token-pbt-emblem" src={pbtLogo} alt="PointBlock PBT logo" width="192" height="192"/><span>POINTBLOCK // NETWORK 4663</span></div>
  </section>
  <section className="section section-slate"><div className="container">
   <div className="section-head-row"><SectionHeading eyebrow="01 / VERIFIED INFORMATION" title="OFFICIAL CONTRACT" accent="STATUS." subtitle="The PBT contract is only displayed when configured by the site owner. Never trust unverified token addresses."/></div>
@@ -25,7 +27,7 @@ export default function Tokenomics(){
     <h3>vPBT</h3><p>A game balance tracked by the PointBlock backend and visible in the in-game interface. It is not presented as an independently traded token.</p>
     <div className="tile-foot"><FiCheckCircle/> BACKEND-TRACKED CURRENCY</div></article>
    <article className="economy-tile"><div className="tile-label"><span>02 / PLANNED</span><span className="pill pill-warning">COMING SOON</span></div>
-    <div className="simple-token-coin">PBT</div><h3>PBT</h3>
+    <img className="token-pbt-tile-logo" src={pbtLogo} alt="PointBlock PBT logo" loading="lazy" width="92" height="92"/><h3>PBT</h3>
     <p>Planned on-chain token utility for the PointBlock ecosystem. No verified contract address, supply breakdown or launch date is published here.</p>
     <div className="tile-foot"><FiLock/> ON-CHAIN UTILITY NOT LIVE</div></article>
   </div>
@@ -33,7 +35,7 @@ export default function Tokenomics(){
  <section className="section section-slate"><div className="container">
   <SectionHeading eyebrow="03 / TRANSPARENCY" title="WHAT'S" accent="CONFIRMED." subtitle="Only the project's implemented game features and verified network facts appear as confirmed."/>
   <div className="token-details">
-   <div><span>NETWORK</span><strong>{NETWORK.name}</strong></div>
+   <div><span>NETWORK</span><strong className="token-network-value"><img src={robinhoodLogo} alt="" aria-hidden="true" width="29" height="29"/>{NETWORK.name}</strong></div>
    <div><span>CHAIN ID</span><strong>{NETWORK.chainId}</strong></div>
    <div><span>GAS CURRENCY</span><strong>{NETWORK.nativeCurrency}</strong></div>
    <div><span>CONVERSION</span><strong>COMING SOON</strong></div>

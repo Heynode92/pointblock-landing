@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import deathmatchVideo from '../assets/video/deatch_match_demo.mp4';
-import { FiArrowRight, FiArrowUpRight, FiCrosshair, FiMap, FiMonitor, FiPause, FiPlay, FiShield, FiTarget, FiZap } from 'react-icons/fi';
+import { FiArrowRight, FiArrowUpRight, FiCrosshair, FiMap, FiMonitor, FiPause, FiPlay, FiShield, FiTarget } from 'react-icons/fi';
 import { ContractTable, DesktopNotice, PlayButton, SectionHeading } from '../components.jsx';
 import { MODES, MAPS, MAP_GROUPS } from '../content.js';
+import robinhoodLogo from '../assets/robinhood-logo.webp';
+import pbtLogo from '../assets/pbt-logo.webp';
 import { ArenaVideo, ArenaGroupHeading } from '../components/ArenaShowcase.jsx';
 
 const highlights=[
@@ -82,7 +84,7 @@ export default function Home(){
        <div className="hero-copy">
          <p className="eyebrow hero-kicker"><span className="accent-slice"/> THE NEXT FRONTLINE <span className="hero-kicker-bars" aria-hidden="true">////</span></p>
          <h1 className="display-title">POINT<span>BLOCK</span><strong>THE BATTLE BEGINS.</strong></h1>
-         <p className="hero-lead">A competitive 5v5 browser FPS. Built for players. <b>Built for Robinhood Chain.</b></p>
+         <p className="hero-lead">A competitive 5v5 browser FPS. Built for players. <b className="hero-chain-support"><img src={robinhoodLogo} alt="" aria-hidden="true" width="24" height="24"/>Built for Robinhood Chain.</b></p>
          <p className="hero-muted">Take your position as Police or Terrorists. Enter Team Deathmatch or Bomb Mission and fight for victory across five arenas.</p>
          <div className="hero-cta"><PlayButton/><Link className="btn btn-outline" to="/about">EXPLORE THE GAME <FiArrowRight aria-hidden="true"/></Link></div>
          <div className="hero-disclaimer"><FiMonitor aria-hidden="true"/> DESKTOP BROWSERS SUPPORTED · MOBILE GAMEPLAY IN DEVELOPMENT</div>
@@ -150,7 +152,7 @@ export default function Home(){
      <div className="container">
        <div className="section-head-row"><SectionHeading eyebrow="03 / ROBINHOOD CHAIN" title="BUILT FOR THE" accent="ECOSYSTEM." subtitle="PointBlock integrates wallet-based player identity on Robinhood Chain Mainnet."/><Link to="/tokenomics" className="inline-link">VIEW TOKENOMICS <FiArrowUpRight/></Link></div>
        <div className="network-grid">
-         <article className="chain-feature"><FiZap className="chain-icon"/><div className="eyebrow">ONCHAIN FOUNDATION</div>
+         <article className="chain-feature"><img className="chain-feature-logo" src={robinhoodLogo} alt="Robinhood Chain logo" width="76" height="76"/><div className="eyebrow">ONCHAIN FOUNDATION</div>
            <h3>ROBINHOOD <span>CHAIN</span></h3><p>An Ethereum-compatible Layer 2 network. PointBlock uses Robinhood Chain Mainnet for wallet-based player identity.</p>
            <div className="chain-metrics"><span>NETWORK <b>MAINNET</b></span><span>CHAIN ID <b>4663</b></span><span>GAS <b>ETH</b></span></div>
          </article>
@@ -158,7 +160,7 @@ export default function Home(){
            <p>Built for desktop browsers today, with mobile gameplay in development.</p>
            <Link to="/play-to-earn" className="inline-link">IN-GAME ECONOMY <FiArrowRight/></Link></div>
        </div>
-       <div className="contract-home"><div className="panel-title-row"><b>PBT TOKEN / CONTRACT INFORMATION</b><span>OFFICIAL STATUS</span></div><ContractTable compact/></div>
+       <div className="contract-home"><div className="panel-title-row"><b className="contract-heading-with-logo"><img src={pbtLogo} alt="" aria-hidden="true" width="27" height="27"/>PBT TOKEN / CONTRACT INFORMATION</b><span>OFFICIAL STATUS</span></div><ContractTable compact/></div>
      </div>
    </section>
 

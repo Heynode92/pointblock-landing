@@ -4,6 +4,8 @@ import {
 } from 'react-icons/fi';
 import { DesktopNotice, PlayButton } from '../components.jsx';
 import { MODES, MAPS, LOADOUT, NETWORK } from '../content.js';
+import robinhoodLogo from '../assets/robinhood-logo.webp';
+import pbtLogo from '../assets/pbt-logo.webp';
 
 const journey = [
   {
@@ -206,7 +208,7 @@ export default function About() {
         </div>
         <div className="about-ecosystem-layout">
           <div className="about-ecosystem-primary">
-            <FiShield aria-hidden="true" />
+            <img className="about-robinhood-logo" src={robinhoodLogo} alt="Robinhood Chain logo" width="76" height="76" />
             <p className="about-network-label">NETWORK / MAINNET</p>
             <h3>ROBINHOOD CHAIN</h3>
             <p>Wallet sign-in uses a backend-verified signature on Robinhood Chain Mainnet (Chain ID {NETWORK.chainId}). Connected accounts and earned game progress are tied to authenticated player identities.</p>
@@ -216,7 +218,7 @@ export default function About() {
             <h3>THE ROLE OF vPBT</h3>
             <p>vPBT is an in-game balance recorded by PointBlock's backend. It is part of the game's reward and equipment economy, not an on-chain trading balance.</p>
             <div className="about-network-divider" />
-            <h3>WHAT ABOUT PBT?</h3>
+            <h3 className="about-pbt-title"><img src={pbtLogo} alt="" aria-hidden="true" width="34" height="34"/>WHAT ABOUT PBT?</h3>
             <p>PBT-related functionality and the in-game converter remain coming-soon concepts. No verified public contract address or live token exchange has been announced in the game source.</p>
             <Link to="/tokenomics" className="about-inline-link">VIEW TOKEN INFORMATION <FiArrowRight aria-hidden="true" /></Link>
           </div>

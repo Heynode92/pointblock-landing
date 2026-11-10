@@ -1,0 +1,40 @@
+/* User-provided 1:1 Robinhood Chain and PointBlock PBT marks.
+   Displayed as visual identity only; no inference of token deployment or affiliation. */
+.network-badge-logo{
+ flex:none;display:block;width:30px;height:30px;object-fit:cover;
+ border-radius:6px;box-shadow:0 0 0 1px rgba(201,255,20,.28)
+}
+.network-compact .network-badge-logo{width:24px;height:24px;border-radius:5px}
+.hero-chain-support{display:inline-flex;align-items:center;gap:7px;vertical-align:baseline;flex-wrap:wrap}
+.hero-chain-support img{display:inline-block;width:24px;height:24px;flex:none;object-fit:cover;border-radius:5px}
+.chain-feature-logo{
+ display:block;width:76px;height:76px;object-fit:cover;margin:0 0 16px;
+ border-radius:10px;box-shadow:0 0 0 1px rgba(193,255,0,.3),0 8px 22px rgba(0,0,0,.25)
+}
+.contract-heading-with-logo{display:inline-flex;align-items:center;gap:10px}
+.contract-heading-with-logo img,.pbt-panel-icon{display:block;width:27px;height:27px;flex:none;object-fit:contain}
+.token-table-identity,.token-table-network{display:flex;align-items:center;gap:10px;min-width:0}
+.token-table-identity>img{flex:none;display:block;width:36px;height:36px;object-fit:contain}
+.token-table-network>img{flex:none;display:block;width:28px;height:28px;object-fit:cover;border-radius:5px}
+.token-table-identity>div,.token-table-network>div{min-width:0}
+.token-hero-art .token-pbt-emblem{
+ display:block;position:relative;z-index:1;width:clamp(160px,17vw,192px);height:auto;
+ aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 17px 25px rgba(0,0,0,.4))
+}
+.economy-tile .token-pbt-tile-logo{display:block;width:92px;height:92px;object-fit:contain}
+.token-network-value{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.token-network-value img{display:block;width:29px;height:29px;flex:none;border-radius:5px;object-fit:cover}
+.about-page .about-robinhood-logo{
+ display:block;width:76px;height:76px;object-fit:cover;border-radius:10px;
+ box-shadow:0 0 0 1px rgba(193,255,0,.22),0 8px 22px rgba(0,0,0,.23)
+}
+.about-page .about-pbt-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.about-page .about-pbt-title>img{display:block;flex:none;width:34px;height:34px;object-fit:contain}
+@media(max-width:700px){
+ .network-badge-logo{width:25px;height:25px}
+ .chain-feature-logo,.about-page .about-robinhood-logo{width:62px;height:62px}
+ .token-table-identity{gap:7px}
+ .token-table-identity>img{width:30px;height:30px}
+ .contract-heading-with-logo{gap:7px}
+ .contract-heading-with-logo img{width:23px;height:23px}
+}

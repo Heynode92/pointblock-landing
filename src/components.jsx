@@ -6,6 +6,8 @@ import {
 } from 'react-icons/fi';
 import { FaXTwitter, FaTelegram, FaDiscord } from 'react-icons/fa6';
 import { NAV, NETWORK, safeCommunityUrl, validContract, validLaunchUrl } from './content.js';
+import robinhoodLogo from './assets/robinhood-logo.webp';
+import pbtLogo from './assets/pbt-logo.webp';
 
 const launchConfigured=validLaunchUrl(import.meta.env.VITE_POINTBLOCK_GAME_URL,import.meta.env.DEV);
 const localDevGame=import.meta.env.DEV && typeof window!=='undefined' &&
@@ -53,7 +55,7 @@ export function PlayButton({className='',small=false}){
 
 export function NetworkBadge({compact=false}){
  return <div className={'network-badge '+(compact?'network-compact':'')}>
-   <span className="network-signal" aria-hidden="true"></span>
+   <img className="network-badge-logo" src={robinhoodLogo} alt="" aria-hidden="true" width="30" height="30"/>
    <span>BUILT FOR <b>ROBINHOOD CHAIN</b></span>
    {!compact&&<span className="network-chain">CHAIN ID {NETWORK.chainId}</span>}
  </div>;
@@ -173,14 +175,20 @@ export function ContractTable({compact=false}){
  }
  const explorer=address?NETWORK.explorer+'/token/'+address:null;
  return <div className={'contract-wrapper'+(compact?' contract-compact':'')}>
-   <div className="panel-top"><span><FiShield aria-hidden="true"/> PBT TOKEN CONTRACT</span>
+   <div className="panel-top"><span><img className="pbt-panel-icon" src={pbtLogo} alt="" aria-hidden="true" width="28" height="28"/> PBT TOKEN CONTRACT</span>
      <span className={'pill '+(address?'pill-info':'pill-warning')}>{address?'ADDRESS PROVIDED':'NOT ANNOUNCED'}</span></div>
    <div className="table-scroll">
      <table className="token-table">
        <thead><tr><th scope="col">TOKEN</th><th scope="col">NETWORK</th><th scope="col">CONTRACT ADDRESS</th><th scope="col">STATUS</th></tr></thead>
        <tbody><tr>
-         <td><b>PBT</b><small>PointBlock Token</small></td>
-         <td><strong>{NETWORK.name}</strong><small>Chain ID {NETWORK.chainId}</small></td>
+         <td><div className="token-table-identity">
+           <img src={pbtLogo} alt="" aria-hidden="true" width="36" height="36"/>
+           <div><b>PBT</b><small>PointBlock Token</small></div>
+         </div></td>
+         <td><div className="token-table-network">
+           <img src={robinhoodLogo} alt="" aria-hidden="true" width="28" height="28"/>
+           <div><strong>{NETWORK.name}</strong><small>Chain ID {NETWORK.chainId}</small></div>
+         </div></td>
          <td><div className="address-cell"><code>{address||'Not announced'}</code>
            <button type="button" onClick={()=>void copy()} disabled={!address} aria-label="Copy PBT contract address"
              title={address?'Copy address':'Contract not announced'}><FiCopy aria-hidden="true"/></button></div>
